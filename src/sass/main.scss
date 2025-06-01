@@ -1,6 +1,4 @@
 @use 'base';
 @use 'colors';
-// @use "components/buttons";
-@use '../components/Auth/buttons';
-@use 'components/formField';
-@use 'pages/login';
+@use 'utils/buttons';
+@use 'utils/formField';
