@@ -1,0 +1,23 @@
+.nav-bar{
+    display: flex;
+    width: 100vw;
+    justify-content: space-between;
+    padding: 5px;
+    align-items: center;
+    position: relative;
+    top: 0px;
+    left: 0px;
+}
+a{
+    text-decoration: none;
+    margin: 0px 10px;
+}
+.func-buttons{
+    border: none;
+    background-color: white;
+    margin: 0px 15px;
+    padding: 0px 3px;
+}
+.popUp{
+    position: absolute;
+}
