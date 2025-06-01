@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import SignupEmailForm from '../components/SignupEmailForm/SignupEmailForm';
+import SignupConfirmation from '../components/SignupConfirmation/SignupConfirmation';
 
 export default function SignUp() {
     const [step, setStep] = useState(1);
@@ -27,7 +28,12 @@ export default function SignUp() {
                     goNext={nextStep}
                 />
             )}
-            {step === 2 && <>Step 2</>}
+            {step === 2 && (
+                <SignupConfirmation
+                    email={emailFormData.email}
+                    goNext={nextStep}
+                />
+            )}
             {step === 3 && <>Step 3</>}
         </>
     );
