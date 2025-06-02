@@ -23,14 +23,14 @@ export default function FriendCard({ friend }) {
                     className={`btn follow-btn ${isFollowing ? 'active' : ''}`}
                     onClick={toggleFollow}
                 >
-                    {isFollowing ? 'Following' : 'Follow'}
+                    {isFollowing ? 'FOLLOWING' : 'FOLLOW'}
                 </button>
 
                 <button
                     className={`btn friend-btn ${isFriend ? 'active' : ''}`}
                     onClick={toggleFriend}
                 >
-                    {isFriend ? 'Friend' : 'Add Friend'}
+                    {isFriend ? '✓ FRIEND' : 'ADD FRIEND'}
                 </button>
             </div>
 
