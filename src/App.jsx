@@ -20,8 +20,7 @@ function App() {
         <>
             <Sidebar />
             <Login />
-            // <FriendCard friend={mockFriend} />
-
+            {/* <FriendCard friend={mockFriend} /> */}
         </>
     );
 }
