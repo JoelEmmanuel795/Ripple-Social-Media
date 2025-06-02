@@ -11,13 +11,41 @@ const PostNavbar = () => {
                     <input defaultValue={'Search posts...'} />
                 </div>
                 <div className="post-filters-container">
-                    <NavLink to="/posts/all">All</NavLink>
+                    <NavLink
+                        to="/posts/all"
+                        className={({ isActive }) =>
+                            isActive ? 'navLink active' : 'navLink'
+                        }
+                    >
+                        All
+                    </NavLink>
 
-                    <NavLink to="/posts/liked">Liked</NavLink>
+                    <NavLink
+                        to="/posts/liked"
+                        className={({ isActive }) =>
+                            isActive ? 'navLink active' : 'navLink'
+                        }
+                    >
+                        Liked
+                    </NavLink>
 
-                    <NavLink to="/posts/friends">Friends</NavLink>
+                    <NavLink
+                        to="/posts/friends"
+                        className={({ isActive }) =>
+                            isActive ? 'navLink active' : 'navLink'
+                        }
+                    >
+                        Friends'
+                    </NavLink>
 
-                    <NavLink to="/posts/following">Follow</NavLink>
+                    <NavLink
+                        to="/posts/following"
+                        className={({ isActive }) =>
+                            isActive ? 'navLink active' : 'navLink'
+                        }
+                    >
+                        Following
+                    </NavLink>
                 </div>
             </nav>
         </>

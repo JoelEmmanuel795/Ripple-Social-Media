@@ -1,20 +1,36 @@
+@use '../../../sass/_colors';
+
 .nav-posts {
     display: flex;
     justify-content: space-between;
 
     .post-search-container {
         display: flex;
-        gap: 10px;
+        gap: 15px;
+        align-items: flex-start;
 
         img {
             height: 25px;
         }
         input {
             border: none;
+            font-size: medium;
+            color: colors.$filterGray;
         }
     }
 
     .post-filters-container {
         display: flex;
+        gap: 3rem;
+
+        a {
+            text-decoration: none;
+            padding-bottom: 25px;
+            color: colors.$filterGray;
+        }
+
+        a.active {
+            border-bottom: solid 2px colors.$grey;
+        }
     }
 }
