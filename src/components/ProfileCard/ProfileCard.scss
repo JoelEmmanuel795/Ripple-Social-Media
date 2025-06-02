@@ -1,127 +1,145 @@
+@use '../../sass/colors';
+@use '../../sass/base';
+
 .profile-card {
     display: flex;
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+    background: colors.$white;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    max-width: 80%;
+    margin: 0 auto;
+}
+
+.left-panel {
+    flex: 1;
+    max-width: 300px;
     padding: 2rem;
-    gap: 2rem;
+    text-align: center;
+    border-right: 1px solid #eee;
 
-    .left-panel {
+    .avatar {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 1rem;
+    }
+
+    .name {
+        font-size: 1.5rem;
+        font-weight: 500;
+    }
+
+    .location {
+        font-size: small;
+        margin-bottom: 2rem;
+    }
+
+    .edit-button {
+        background: white;
+        border: 1px solid lightgray;
+        border-radius: 999px;
+        padding: 0.7rem 1.5rem;
+        font-size: 0.8rem;
+        letter-spacing: 0.05rem;
+        cursor: pointer;
+        transition: all 0.2s;
+
+        &:hover {
+            background: colors.$grey;
+        }
+    }
+}
+
+.right-panel {
+    flex: 2;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    .main-content {
         display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 1rem;
+        gap: 2rem;
 
-        .avatar {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            object-fit: cover;
+        .left-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+
+            .about {
+                h4 {
+                    font-size: 0.9rem;
+                    color: gray;
+                    margin-bottom: 0.3rem;
+                }
+            }
+
+            .info {
+                display: flex;
+                justify-content: space-between;
+
+                div {
+                    width: 48%;
+
+                    h4 {
+                        font-size: 0.9rem;
+                        color: gray;
+                        margin-bottom: 0.3rem;
+                    }
+                }
+            }
         }
 
-        .btn,
-        .option-btn,
-        .delete-btn {
-            padding: 0.5rem 1rem;
-            font-size: 0.9rem;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-        }
+        .right-content {
+            flex: 1;
 
-        .btn {
-            background: #f0f0f0;
-        }
+            .likes {
+                h4 {
+                    font-size: 0.9rem;
+                    color: gray;
+                    margin-bottom: 0.3rem;
+                }
 
-        .option-btn {
-            background: #eee;
-        }
+                .tags {
+                    display: grid;
+                    grid-template-columns: repeat(3, 1fr);
+                    gap: 0.5rem;
 
-        .delete-btn {
-            background: #ffdddd;
-            color: #a00;
+                    .tag {
+                        background: #eee;
+                        padding: 0.4rem 0.8rem;
+                        border-radius: 999px;
+                        font-size: 0.85rem;
+                        text-align: center;
+                    }
+                }
+            }
         }
     }
 
-    .right-panel {
-        flex: 1;
+    .stats {
+        display: flex;
+        justify-content: space-around;
+        border-top: 1px solid #eee;
+        padding-top: 1rem;
+        margin-top: auto;
 
-        .row {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 1rem;
+        .stat {
+            text-align: center;
 
-            .full-width {
-                flex: 1;
+            .value {
+                display: block;
+                font-weight: bold;
+                font-size: 1.3rem;
             }
 
-            input,
-            textarea {
-                flex: 1;
-                padding: 0.5rem;
-                border: 1px solid #ddd;
-                border-radius: 6px;
+            .label {
+                font-size: 0.85rem;
+                color: gray;
             }
-
-            textarea {
-                resize: vertical;
-                min-height: 80px;
-            }
-        }
-
-        .tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-
-            .tag {
-                background-color: #eee;
-                padding: 0.3rem 0.7rem;
-                border-radius: 999px;
-                font-size: 0.8rem;
-                cursor: pointer;
-            }
-        }
-
-        .tag-input {
-            align-items: center;
-
-            input {
-                flex: 1;
-            }
-
-            button {
-                padding: 0.4rem 1rem;
-                margin-left: 0.5rem;
-            }
-        }
-
-        .edit-btn,
-        .save-btn,
-        .cancel-btn {
-            padding: 0.5rem 1rem;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-        }
-
-        .edit-btn {
-            background: #eee;
-        }
-
-        .save-btn {
-            background: linear-gradient(102deg, #c465ff, #6e91f6);
-            color: #fff;
-        }
-
-        .cancel-btn {
-            background: #ddd;
-        }
-
-        .actions {
-            display: flex;
-            gap: 1rem;
-            justify-content: flex-end;
         }
     }
 }
