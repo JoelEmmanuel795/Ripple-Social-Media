@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, Outlet } from 'react-router';
 import axios from 'axios';
 import { login_user, logout_user } from '../store/slices/userSlice';
+import NavBar from '../components/NavBar';
 
 const ProtectedLayout = () => {
     const [validated, setValidated] = useState(false);
@@ -38,7 +39,14 @@ const ProtectedLayout = () => {
         return <Navigate to="/auth/login" replace />;
     }
 
-    return <Outlet />;
+    return (
+        <>
+            <div className="page-container">
+                <NavBar />
+                <Outlet />
+            </div>
+        </>
+    );
 };
 
 export default ProtectedLayout;

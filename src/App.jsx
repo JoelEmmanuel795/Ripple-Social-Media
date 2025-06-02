@@ -9,6 +9,7 @@ import FilterFriendsPosts from './components/Posts/FilterFriendsPosts/FilterFrie
 import FilterFollowingPosts from './components/Posts/FIlterFollowedPosts/FilterFollowingPosts';
 import FilterLikedPosts from './components/Posts/FilterLikedPosts/FilterLikedPosts';
 import PostContainer from './components/Posts/PostContainer/PostContainer';
+import Friends from './pages/Friends';
 
 function App() {
     return (
@@ -19,15 +20,21 @@ function App() {
                 <Route path="login" element={<Login />} />
             </Route>
             <Route element={<ProtectedLayout />}>
-                <Route path="posts" element={<PostContainer />}>
-                    <Route path="all" element={<FilterAllPosts />} />
-                    <Route path="friends" element={<FilterFriendsPosts />} />
-                    <Route
-                        path="following"
-                        element={<FilterFollowingPosts />}
-                    />
-                    <Route path="liked" element={<FilterLikedPosts />} />
-                </Route>
+                {
+                    <Route path="posts" element={<PostContainer />}>
+                        <Route path="all" element={<FilterAllPosts />} />
+                        <Route
+                            path="friends"
+                            element={<FilterFriendsPosts />}
+                        />
+                        <Route
+                            path="following"
+                            element={<FilterFollowingPosts />}
+                        />
+                        <Route path="liked" element={<FilterLikedPosts />} />
+                    </Route>
+                }
+                <Route path="friends" element={<Friends />} />
             </Route>
         </Routes>
     );
