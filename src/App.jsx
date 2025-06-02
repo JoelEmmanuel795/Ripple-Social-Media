@@ -1,5 +1,5 @@
 import './sass/main.scss';
-import { Routes, Route } from 'react-router';
+import { Routes, Route, Navigate } from 'react-router';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import AuthLayout from './layouts/AuthLayout';
@@ -13,6 +13,7 @@ import PostContainer from './components/Posts/PostContainer/PostContainer';
 function App() {
     return (
         <Routes>
+            <Route path="/" element={<Navigate to="/posts/all" />} />
             <Route path="auth" element={<AuthLayout />}>
                 <Route path="signup" element={<Signup />} />
                 <Route path="login" element={<Login />} />
