@@ -1,0 +1,165 @@
+@use '../../sass/colors';
+
+@import '../../sass/utils/formField';
+
+.profile-edit-card {
+    display: flex;
+    min-height: 730px;
+    background-color: white;
+    border-radius: 12px;
+    overflow: hidden;
+
+    .left-panel {
+        width: 240px;
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-right: 1px solid #eee;
+
+        .avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 16px;
+        }
+
+        .update-image-button {
+            background: none;
+            border: 1px solid #ccc;
+            border-radius: 999px;
+            padding: 8px 20px;
+            margin-bottom: 24px;
+            font-size: 14px;
+        }
+
+        .upload-menu {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            margin-bottom: auto;
+
+            button {
+                padding: 10px;
+                text-align: left;
+                background-color: #f9f9f9;
+                border: none;
+                border-bottom: 1px solid #eee;
+                font-size: 14px;
+
+                &:last-child {
+                    border-bottom: none;
+                }
+            }
+        }
+
+        .delete-button {
+            margin-top: auto;
+            margin-bottom: 12px;
+            background: none;
+            border: 1px solid #000;
+            border-radius: 999px;
+            padding: 10px 20px;
+            font-weight: 500;
+        }
+
+        .save-button {
+            background: colors.$linear-gradient;
+            color: white;
+            border: none;
+            border-radius: 999px;
+            padding: 10px 20px;
+            font-weight: 500;
+        }
+    }
+
+    .right-panel {
+        flex: 1;
+        padding: 24px;
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 8px;
+
+            .tag {
+                background-color: #eee;
+                border-radius: 999px;
+                padding: 6px 12px;
+                display: flex;
+                align-items: center;
+                font-size: 14px;
+
+                .remove-tag {
+                    background: none;
+                    border: none;
+                    margin-left: 8px;
+                    cursor: pointer;
+                }
+            }
+        }
+
+        .tag-input-row {
+            display: flex;
+            gap: 12px;
+            margin-top: 12px;
+
+            input {
+                flex: 1;
+            }
+
+            button {
+                border: 1px solid #ccc;
+                border-radius: 999px;
+                padding: 6px 16px;
+                background: white;
+            }
+        }
+    }
+
+    // Ensure textarea matches input styles
+    textarea {
+        width: 100%;
+        padding: 10px 5px;
+        background: transparent;
+        border: none;
+        border-bottom: 2px solid #ccc;
+        color: black;
+        font-size: 16px;
+        outline: none;
+        resize: vertical;
+
+        &:focus + label,
+        &:valid + label {
+            top: -10px;
+            font-size: 12px;
+            color: #ccc;
+        }
+    }
+
+    // Float label for textarea too
+    .form-field textarea + label {
+        position: absolute;
+        left: 5px;
+        top: 10px;
+        color: #aaa;
+        pointer-events: none;
+        transition: all 0.3s ease;
+    }
+
+    .form-field {
+        position: relative;
+    }
+}
