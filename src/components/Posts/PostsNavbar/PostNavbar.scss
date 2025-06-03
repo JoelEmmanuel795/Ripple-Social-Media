@@ -1,0 +1,20 @@
+.nav-posts {
+    display: flex;
+    justify-content: space-between;
+
+    .post-search-container {
+        display: flex;
+        gap: 10px;
+
+        img {
+            height: 25px;
+        }
+        input {
+            border: none;
+        }
+    }
+
+    .post-filters-container {
+        display: flex;
+    }
+}
