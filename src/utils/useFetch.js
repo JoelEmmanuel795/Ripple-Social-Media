@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
  * Custom React hook to perform HTTP requests using Axios, with optional Bearer token authentication.
  *
  * @returns {{
- *   fetchData: (
+ *   sendRequest: (
  *     urlEnding: string,
  *     payload?: any,
  *     method?: 'get' | 'post' | 'put' | 'patch' | 'delete'
@@ -15,23 +15,23 @@ import { useSelector } from 'react-redux';
  *   isLoading: boolean,
  *   error: any
  * }} Object containing:
- *   - `fetchData`: Function to initiate the HTTP request.
+ *   - `sendRequest`: Function to initiate the HTTP request.
  *   - `resData`: The response data from the API.
  *   - `isLoading`: Boolean indicating whether the request is in progress.
  *   - `error`: Any error that occurred during the request.
  *
  * @example
  * // Simple GET request
- * const { fetchData, resData, isLoading, error } = useFetch();
+ * const { sendRequest, resData, isLoading, error } = useFetch();
  * useEffect(() => {
- *   fetchData('/posts');
+ *   sendRequest('/posts');
  * }, []);
  *
  * @example
  * // PATCH request with payload
- * const { fetchData, resData, isLoading, error } = useFetch();
+ * const { sendRequest, resData, isLoading, error } = useFetch();
  * const updatePost = () => {
- *   fetchData('/posts/1', { title: 'Updated Title' }, 'patch');
+ *   sendRequest('/posts/1', { title: 'Updated Title' }, 'patch');
  * };
  *
  * @author Philippe Giavarini
