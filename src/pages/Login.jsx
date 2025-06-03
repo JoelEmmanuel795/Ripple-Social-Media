@@ -9,7 +9,7 @@ import { login_user } from '../store/slices/userSlice';
 import useFetch from '../utils/useFetch';
 
 const Login = () => {
-    const { resData, fetchData } = useFetch();
+    const { resData, sendRequest } = useFetch();
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -28,16 +28,15 @@ const Login = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        fetchData('/auth/token/', formData, 'post');
+        sendRequest('/auth/token/', formData, 'post');
     };
 
     useEffect(() => {
         if (resData) {
-            console.log(resData);
             dispatch(login_user(resData.access));
             navigate('/');
         }
-    }, [resData, fetchData]);
+    }, [resData]);
 
     return (
         <div className="container-right">
