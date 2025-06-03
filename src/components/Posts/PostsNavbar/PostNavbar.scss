@@ -6,11 +6,12 @@
 
     .post-search-container {
         display: flex;
-        gap: 15px;
+        gap: 20px;
         align-items: flex-start;
 
         img {
             height: 25px;
+            cursor: pointer;
         }
         input {
             border: none;

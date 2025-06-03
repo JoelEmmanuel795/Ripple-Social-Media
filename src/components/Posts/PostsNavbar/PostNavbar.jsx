@@ -3,11 +3,15 @@ import './PostNavbar.scss';
 import { NavLink } from 'react-router';
 
 const PostNavbar = () => {
+    function handleSearchPosts() {
+        console.log('Search posts triggered!');
+    }
+
     return (
         <>
             <nav className="nav-posts">
                 <div className="post-search-container">
-                    <img src={search_icon}></img>
+                    <img src={search_icon} onClick={handleSearchPosts}></img>
                     <input defaultValue={'Search posts...'} />
                 </div>
                 <div className="post-filters-container">

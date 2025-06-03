@@ -5,7 +5,7 @@ import send_button from '../../../assets/svgs/send_button.svg';
 
 const PostCreator = () => {
     const [userAvatar, setUserAvatar] = useState('Jennifer');
-    const inputString = `What's on your mind ${userAvatar}`;
+    const inputString = `What's on your mind ${userAvatar}?`;
 
     function handleCreatePost() {
         // Logic to handle post creation
@@ -18,11 +18,9 @@ const PostCreator = () => {
                 <img className="user-avatar" src={jennifer_avatar}></img>
                 <input defaultValue={inputString} />
             </div>
-            <img
-                className="create-post"
-                src={send_button}
-                onClick={handleCreatePost}
-            ></img>
+            <div className="create-post-bgr" onClick={handleCreatePost}>
+                <img className="create-post" src={send_button}></img>
+            </div>
         </div>
     );
 };

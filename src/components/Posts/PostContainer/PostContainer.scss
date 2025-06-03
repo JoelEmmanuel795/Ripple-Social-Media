@@ -14,6 +14,7 @@
             background-color: yellow;
             break-inside: avoid;
             margin-bottom: 1rem;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
         }
         .rectangley {
             width: auto;
@@ -21,6 +22,7 @@
             background-color: orange;
             break-inside: avoid;
             margin-bottom: 1rem;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
         }
     }
 }
