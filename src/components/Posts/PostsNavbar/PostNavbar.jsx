@@ -12,7 +12,7 @@ const PostNavbar = () => {
             <nav className="nav-posts">
                 <div className="post-search-container">
                     <img src={search_icon} onClick={handleSearchPosts}></img>
-                    <input defaultValue={'Search posts...'} />
+                    <input placeholder={'Search posts...'} />
                 </div>
                 <div className="post-filters-container">
                     <NavLink

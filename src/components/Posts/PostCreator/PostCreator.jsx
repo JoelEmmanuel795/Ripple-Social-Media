@@ -16,7 +16,7 @@ const PostCreator = () => {
         <div className="post-creator-container">
             <div className="avatar-and-input">
                 <img className="user-avatar" src={jennifer_avatar}></img>
-                <input defaultValue={inputString} />
+                <textarea placeholder={inputString} />
             </div>
             <div className="create-post-bgr" onClick={handleCreatePost}>
                 <img className="create-post" src={send_button}></img>

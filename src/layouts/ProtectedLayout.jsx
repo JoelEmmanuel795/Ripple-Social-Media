@@ -8,6 +8,7 @@ import NavBar from '../components/NavBar';
 const ProtectedLayout = () => {
     const [validated, setValidated] = useState(false);
     const token = useSelector((state) => state.user.accessToken);
+
     const dispatch = useDispatch();
 
     // Validate the token
