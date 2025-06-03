@@ -98,7 +98,115 @@ export default function ProfileCard() {
                         </div>
                     </>
                 ) : (
-                    <div className="edit-form">Edit form coming next...</div>
+                    <div className="edit-form">
+                        <form className="form-fields">
+                            <div className="form-columns">
+                                <div className="column">
+                                    <div className="form-field">
+                                        <div className="input-wrapper">
+                                            <input
+                                                type="text"
+                                                id="firstName"
+                                                required
+                                                defaultValue={user.firstName}
+                                            />
+                                            <label htmlFor="firstName">
+                                                First Name
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div className="form-field">
+                                        <div className="input-wrapper">
+                                            <input
+                                                type="text"
+                                                id="username"
+                                                required
+                                                defaultValue={user.username}
+                                            />
+                                            <label htmlFor="username">
+                                                Username
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div className="form-field">
+                                        <div className="input-wrapper">
+                                            <input
+                                                type="text"
+                                                id="location"
+                                                required
+                                                defaultValue={user.location}
+                                            />
+                                            <label htmlFor="location">
+                                                Location
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="column">
+                                    <div className="form-field">
+                                        <div className="input-wrapper">
+                                            <input
+                                                type="text"
+                                                id="lastName"
+                                                required
+                                                defaultValue={user.lastName}
+                                            />
+                                            <label htmlFor="lastName">
+                                                Last Name
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div className="form-field">
+                                        <div className="input-wrapper">
+                                            <input
+                                                type="email"
+                                                id="email"
+                                                required
+                                                defaultValue={user.email}
+                                            />
+                                            <label htmlFor="email">Email</label>
+                                        </div>
+                                    </div>
+                                    <div className="form-field">
+                                        <div className="input-wrapper">
+                                            <input
+                                                type="tel"
+                                                id="phone"
+                                                required
+                                                defaultValue={user.phone}
+                                            />
+                                            <label htmlFor="phone">Phone</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="form-field full-width">
+                                <div className="input-wrapper">
+                                    <input
+                                        type="text"
+                                        id="about"
+                                        required
+                                        defaultValue={user.about}
+                                    />
+                                    <label htmlFor="about">About</label>
+                                </div>
+                            </div>
+
+                            <div className="buttons">
+                                <button type="submit" className="button-login">
+                                    SAVE
+                                </button>
+                                <button
+                                    type="button"
+                                    className="delete-account"
+                                >
+                                    DELETE ACCOUNT
+                                </button>
+                            </div>
+                        </form>
+                    </div>
                 )}
             </div>
         </div>

@@ -1,5 +1,7 @@
 @use '../../sass/colors';
 @use '../../sass/base';
+@use '../../sass/utils/buttons';
+@use '../../sass/utils/formField';
 
 .profile-card {
     display: flex;
@@ -140,6 +142,53 @@
                 font-size: 0.85rem;
                 color: gray;
             }
+        }
+    }
+}
+
+.edit-form {
+    display: flex;
+    align-items: center;
+    
+
+    .form-fields {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .form-columns {
+        display: flex;
+        gap: 2rem;
+
+        .column {
+            flex: 1;
+        }
+    }
+
+    .form-field {
+        @extend .form-field; // reuse formField mixin
+    }
+
+    .full-width {
+        width: 100%;
+    }
+
+    .buttons {
+        display: flex;
+        gap: 2rem;
+        margin-top: 2rem;
+
+        .button-login {
+            @extend .button-login;
+        }
+
+        .delete-account {
+            @include buttons.button;
+            border-color: colors.$grey;
+            background: white;
+            color: black;
         }
     }
 }
