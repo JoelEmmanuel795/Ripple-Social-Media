@@ -1,0 +1,74 @@
+@use '../../sass/colors';
+
+.friend-card {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    padding: 1.5rem;
+    text-align: center;
+    height: 400px;
+    max-width: 250px;
+
+    .avatar {
+        width: 72px;
+        height: 72px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 0.75rem;
+    }
+
+    .name {
+        font-weight: 600;
+        font-size: 1.1rem;
+        margin: 0.25rem 0;
+    }
+
+    .location {
+        color: #888;
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+    }
+
+    .button-row {
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+
+        .btn {
+            border: 1px solid #ddd;
+            border-radius: 999px;
+            padding: 0.4rem 1rem;
+            font-size: 0.85rem;
+            cursor: pointer;
+            background-color: #fff;
+            transition: all 0.2s ease;
+
+            &.active {
+                background: colors.$linear-gradient;
+                color: #fff;
+            }
+        }
+    }
+
+    .bio {
+        font-size: 0.85rem;
+        color: #555;
+        margin-bottom: 1rem;
+    }
+
+    .interests {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem;
+
+        .tag {
+            background-color: #f0f0f0;
+            padding: 0.3rem 0.75rem;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            color: #444;
+        }
+    }
+}
