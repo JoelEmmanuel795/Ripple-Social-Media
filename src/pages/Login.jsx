@@ -1,17 +1,15 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import avatarSVG from '../assets/svgs/avatar.svg';
 import passwordSVG from '../assets/svgs/password.svg';
 
 import '../sass/pages/login.scss';
-import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { login_user } from '../store/slices/userSlice';
+import useFetch from '../utils/useFetch';
 
 const Login = () => {
-    const loginUrl =
-        'https://motion.propulsion-home.ch/backend/api/auth/token/';
-
+    const { resData, fetchData } = useFetch();
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -30,20 +28,16 @@ const Login = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-
-        const fetch = async () => {
-            try {
-                const { data } = await axios.post(loginUrl, formData, {
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                });
-                dispatch(login_user(data.access));
-                navigate('/');
-            } catch (error) {}
-        };
-        fetch();
+        fetchData('/auth/token/', formData, 'post');
     };
+
+    useEffect(() => {
+        if (resData) {
+            console.log(resData);
+            dispatch(login_user(resData.access));
+            navigate('/');
+        }
+    }, [resData, fetchData]);
 
     return (
         <div className="container-right">
