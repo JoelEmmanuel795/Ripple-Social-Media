@@ -43,7 +43,7 @@ import { useSelector } from 'react-redux';
 const useFetch = () => {
     const token = useSelector((state) => state.user.accessToken);
 
-    const [resData, setResData] = useState(undefined);
+    const [resData, setResData] = useState({});
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
 
