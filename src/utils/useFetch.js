@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 /**
- * Custom React hook to perform HTTP requests using Axios, with optional Bearer token authentication.
+ * Custom React hook to perform HTTP requests using Axios, with optional Bearer token authentication from Redux.
  *
  * @returns {{
  *   sendRequest: (
@@ -11,31 +11,35 @@ import { useSelector } from 'react-redux';
  *     payload?: any,
  *     method?: 'get' | 'post' | 'put' | 'patch' | 'delete'
  *   ) => Promise<void>,
- *   resData: any,
+ *   resData: Record<string, any>,
  *   isLoading: boolean,
  *   error: any
- * }} Object containing:
- *   - `sendRequest`: Function to initiate the HTTP request.
- *   - `resData`: The response data from the API.
- *   - `isLoading`: Boolean indicating whether the request is in progress.
- *   - `error`: Any error that occurred during the request.
+ * }}
  *
- * @example
- * // Simple GET request
+ * @description
+ * This hook simplifies making authenticated or unauthenticated HTTP requests using Axios.
+ * It supports all common HTTP methods and automatically includes a Bearer token from the Redux store (if available).
+ * The hook maintains local state for loading, response data, and errors.
+ *
+ * @function
+ * @name useFetch
+ *
+ * @example <caption>Perform a simple GET request</caption>
  * const { sendRequest, resData, isLoading, error } = useFetch();
  * useEffect(() => {
  *   sendRequest('/posts');
  * }, []);
  *
- * @example
- * // PATCH request with payload
- * const { sendRequest, resData, isLoading, error } = useFetch();
+ * @example <caption>Perform a PATCH request with a body</caption>
+ * const { sendRequest, resData } = useFetch();
  * const updatePost = () => {
  *   sendRequest('/posts/1', { title: 'Updated Title' }, 'patch');
  * };
  *
- * @author Philippe Giavarini
+ * @author
+ * Philippe Giavarini
  */
+
 const useFetch = () => {
     const token = useSelector((state) => state.user.accessToken);
 
@@ -52,6 +56,7 @@ const useFetch = () => {
      */
     const sendRequest = async (urlEnding, payload, method = 'get') => {
         setIsLoading(true);
+        console.log(token);
         const config = token
             ? { headers: { Authorization: `Bearer ${token}` } }
             : {};
@@ -69,7 +74,8 @@ const useFetch = () => {
                     config
                 );
             }
-            setResData(response.data);
+            console.log(resData);
+            setResData({ ...resData, [urlEnding]: response.data });
         } catch (error) {
             console.log(error);
             setError(error);

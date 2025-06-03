@@ -32,8 +32,9 @@ const Login = () => {
     };
 
     useEffect(() => {
+        console.log(resData);
         if (resData) {
-            dispatch(login_user(resData.access));
+            dispatch(login_user(resData['/auth/token/'].access));
             navigate('/');
         }
     }, [resData]);

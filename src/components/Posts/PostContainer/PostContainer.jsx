@@ -6,6 +6,7 @@ import Post from '../PostComponent/Post';
 
 const PostContainer = () => {
     const { filter } = useParams();
+
     return (
         <div className="post-master-container">
             <PostNavbar />
