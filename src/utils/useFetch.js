@@ -50,7 +50,7 @@ const useFetch = () => {
      * @param {*} [payload] - Optional request body for methods like POST, PUT, PATCH.
      * @param {'get' | 'post' | 'put' | 'patch' | 'delete'} [method='get'] - The HTTP method to use.
      */
-    const fetchData = async (urlEnding, payload, method = 'get') => {
+    const sendRequest = async (urlEnding, payload, method = 'get') => {
         setIsLoading(true);
         const config = token
             ? { headers: { Authorization: `Bearer ${token}` } }
@@ -78,7 +78,7 @@ const useFetch = () => {
         }
     };
 
-    return { fetchData, resData, isLoading, error };
+    return { sendRequest, resData, isLoading, error };
 };
 
 export default useFetch;
