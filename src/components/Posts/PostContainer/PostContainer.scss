@@ -1,0 +1,28 @@
+.post-master-container {
+    padding: 0 5%;
+    margin-top: 2rem;
+    width: 100%;
+    height: 100%;
+
+    .post-columns-container {
+        column-count: 2;
+        column-gap: 3%;
+        margin-top: 5px;
+        .boxy {
+            width: auto;
+            height: 300px;
+            background-color: yellow;
+            break-inside: avoid;
+            margin-bottom: 1rem;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+        }
+        .rectangley {
+            width: auto;
+            height: 500px;
+            background-color: orange;
+            break-inside: avoid;
+            margin-bottom: 1rem;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+        }
+    }
+}
