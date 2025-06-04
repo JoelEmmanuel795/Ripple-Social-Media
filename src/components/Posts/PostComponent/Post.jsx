@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
 import share from '../../../assets/svgs/share.svg';
 import heart from '../../../assets/svgs/heart.svg';
+import heartLiked from '../../../assets/svgs/heart_colored.svg';
 import './Post.scss';
 import userAvatar from '../../../assets/images/users/jennifer.png';
 import kebabMenu from '../../../assets/svgs/menu.svg';
 import { formatDistanceToNow } from 'date-fns';
 import ImageGallery from '../ImageGallery/ImageGallery';
+import useFetch from '../../../utils/useFetch';
 
 const Post = ({ postData }) => {
     const [firstName, setFirstName] = useState('');
@@ -13,6 +15,9 @@ const Post = ({ postData }) => {
     const [publishedAt, setPublishedAt] = useState('2023-10-01T12:00:00Z');
     const [content, setContent] = useState('');
     const [likes, setLikes] = useState(0);
+    const [liked, setLiked] = useState(false);
+
+    const { sendRequest } = useFetch();
 
     useEffect(() => {
         console.log(postData);
@@ -21,11 +26,18 @@ const Post = ({ postData }) => {
         setPublishedAt(postData.created);
         setContent(postData.content);
         setLikes(postData.amount_of_likes);
+        setLiked(postData.logged_in_user_liked);
         console.log(postData.images);
     }, []);
 
     function handleKebabButton() {
         console.log('Kebab!');
+    }
+
+    function handleToggleLikes() {
+        sendRequest(`/social/posts/toggle-like/${postData.id}/`, null, 'post');
+        setLikes((prev) => (liked ? prev - 1 : prev + 1));
+        setLiked((prev) => !prev);
     }
 
     return (
@@ -52,8 +64,11 @@ const Post = ({ postData }) => {
             <p className="post-text">{content}</p>
             <ImageGallery images={postData.images} />
             <footer className="post-footer">
-                <div className="like-button">
-                    <img className="heart" src={heart}></img>
+                <div className="like-button" onClick={handleToggleLikes}>
+                    <img
+                        className="heart"
+                        src={liked ? heartLiked : heart}
+                    ></img>
                     <p>Like</p>
                 </div>
                 <div className="share-button">
