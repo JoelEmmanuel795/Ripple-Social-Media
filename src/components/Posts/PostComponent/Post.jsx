@@ -3,7 +3,7 @@ import share from '../../../assets/svgs/share.svg';
 import heart from '../../../assets/svgs/heart.svg';
 import heartLiked from '../../../assets/svgs/heart_colored.svg';
 import './Post.scss';
-import userAvatar from '../../../assets/images/users/jennifer.png';
+import userAvatar from '../../../assets/images/users/default.png';
 import kebabMenu from '../../../assets/svgs/menu.svg';
 import { formatDistanceToNow } from 'date-fns';
 import ImageGallery from '../ImageGallery/ImageGallery';
@@ -16,6 +16,7 @@ const Post = ({ postData }) => {
     const [content, setContent] = useState('');
     const [likes, setLikes] = useState(0);
     const [liked, setLiked] = useState(false);
+    const [avatar, setAvatar] = useState(null);
 
     const { sendRequest } = useFetch();
 
@@ -27,6 +28,7 @@ const Post = ({ postData }) => {
         setContent(postData.content);
         setLikes(postData.amount_of_likes);
         setLiked(postData.logged_in_user_liked);
+        setAvatar(postData.user.avatar);
         console.log(postData.images);
     }, []);
 
@@ -43,7 +45,10 @@ const Post = ({ postData }) => {
     return (
         <div className="post-item-container">
             <header className="post-header">
-                <img className="user-avatar" src={userAvatar}></img>
+                <img
+                    className="user-avatar"
+                    src={avatar ? avatar : userAvatar}
+                ></img>
                 <div className="name-and-published">
                     {firstName} {lastName}
                     <br />
