@@ -1,20 +1,41 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import useFetch from '../../utils/useFetch';
 import './FriendCard.scss';
 
 export default function FriendCard({ friend }) {
+    const accessToken = useSelector((state) => state.user.accessToken);
+    const { sendRequest, resData, isLoading, error } = useFetch();
+
     const [isFollowing, setIsFollowing] = useState(
         friend.logged_in_user_is_following
     );
-    const [isFriend, setIsFriend] = useState(friend.logged_in_user_is_friends);
+    const [friendStatus, setFriendStatus] = useState(
+        friend.logged_in_user_is_friends
+            ? '✓ FRIEND'
+            : friend.logged_in_user_sent_fr
+              ? 'PENDING'
+              : 'ADD FRIEND'
+    );
 
-    const toggleFollow = () => {
-        // TODO: Add follow/unfollow API call here
+    const handleFollow = async () => {
+        await sendRequest(
+            `/social/followers/toggle-follow/${friend.id}/`,
+            null,
+            'post'
+        );
         setIsFollowing((prev) => !prev);
     };
 
-    const toggleFriend = () => {
-        // TODO: Add add/remove friend API call here
-        setIsFriend((prev) => !prev);
+    const handleFriendRequest = async () => {
+        if (friendStatus !== 'ADD FRIEND') return;
+
+        await sendRequest(
+            `/social/friends/request/${friend.id}/`,
+            null,
+            'post'
+        );
+        setFriendStatus('PENDING');
     };
 
     return (
@@ -33,16 +54,18 @@ export default function FriendCard({ friend }) {
             <div className="button-row">
                 <button
                     className={`btn follow-btn ${isFollowing ? 'active' : ''}`}
-                    onClick={toggleFollow}
+                    onClick={handleFollow}
+                    disabled={isLoading}
                 >
                     {isFollowing ? 'FOLLOWING' : 'FOLLOW'}
                 </button>
 
                 <button
-                    className={`btn friend-btn ${isFriend ? 'active' : ''}`}
-                    onClick={toggleFriend}
+                    className={`btn friend-btn ${friendStatus !== 'ADD FRIEND' ? 'active' : ''}`}
+                    onClick={handleFriendRequest}
+                    disabled={friendStatus !== 'ADD FRIEND' || isLoading}
                 >
-                    {isFriend ? '✓ FRIEND' : 'ADD FRIEND'}
+                    {friendStatus}
                 </button>
             </div>
 
