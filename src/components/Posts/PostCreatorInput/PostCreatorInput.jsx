@@ -10,7 +10,7 @@ const PostCreator = ({ isShown, showModalFunc }) => {
     const { fetchData, resData, isLoading, error } = useFetch();
 
     useEffect(() => {
-        fetchData('/posts');
+        //fetchData('/posts');
         console.log(resData);
     }, [fetchData, isLoading, resData, error]);
 

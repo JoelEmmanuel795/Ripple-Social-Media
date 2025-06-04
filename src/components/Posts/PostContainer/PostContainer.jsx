@@ -36,9 +36,8 @@ const PostContainer = () => {
             <div className="post-columns-container">
                 <PostCreator />
                 {isLoading && <>Loading...</>}
-                {/* <Post /> */}
                 {resData?.results.map((post) => {
-                    return <>{<Post key={post.id} postData={post} />}</>;
+                    return <Post key={post.id} postData={post} />;
                 })}
             </div>
         </div>

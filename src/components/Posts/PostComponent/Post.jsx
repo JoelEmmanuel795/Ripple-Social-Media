@@ -5,6 +5,7 @@ import './Post.scss';
 import userAvatar from '../../../assets/images/users/jennifer.png';
 import kebabMenu from '../../../assets/svgs/menu.svg';
 import { formatDistanceToNow } from 'date-fns';
+import ImageGallery from '../ImageGallery/ImageGallery';
 
 const Post = ({ postData }) => {
     const [firstName, setFirstName] = useState('');
@@ -15,11 +16,11 @@ const Post = ({ postData }) => {
 
     useEffect(() => {
         console.log(postData);
-        setFirstName(postData.user.firstname);
-        setLastName(postData.user.lastname);
+        setFirstName(postData.user.first_name);
+        setLastName(postData.user.last_name);
         setPublishedAt(postData.created);
         setContent(postData.content);
-        setLikes(postData.likes);
+        setLikes(postData.amount_of_likes);
         console.log(postData.images);
     }, []);
 
@@ -49,6 +50,7 @@ const Post = ({ postData }) => {
                 }
             </header>
             <p className="post-text">{content}</p>
+            <ImageGallery images={postData.images} />
             <footer className="post-footer">
                 <div className="like-button">
                     <img className="heart" src={heart}></img>
