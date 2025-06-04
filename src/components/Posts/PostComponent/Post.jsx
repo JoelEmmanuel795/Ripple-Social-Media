@@ -28,6 +28,7 @@ const Post = ({ postData }) => {
     const handleDeleteClick = (e) => {
         e.stopPropagation();
         setShowDeleteModal(true);
+        setShowDropdown(false);
     };
 
     const handleDeleteConfirm = () => {
@@ -40,8 +41,6 @@ const Post = ({ postData }) => {
     };
     const [liked, setLiked] = useState(false);
     const [avatar, setAvatar] = useState(null);
-
-    const { sendRequest } = useFetch();
 
     useEffect(() => {
         //console.log(postData);
