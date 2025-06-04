@@ -39,7 +39,7 @@ const PostNavbar = () => {
                             isActive ? 'navLink active' : 'navLink'
                         }
                     >
-                        Friends'
+                        Friends
                     </NavLink>
 
                     <NavLink

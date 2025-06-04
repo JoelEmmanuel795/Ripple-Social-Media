@@ -27,10 +27,12 @@ const ProtectedLayout = () => {
                     dispatch(login_user(accessToken));
                 } catch {
                     dispatch(logout_user());
+                } finally {
                     setValidated(true);
                 }
             } else {
                 dispatch(logout_user());
+                setValidated(true);
             }
         };
         fetch();
@@ -38,6 +40,10 @@ const ProtectedLayout = () => {
 
     if (!token && validated) {
         return <Navigate to="/auth/login" replace />;
+    }
+
+    if (!validated) {
+        return <>Loading...</>;
     }
 
     return (

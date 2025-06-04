@@ -74,7 +74,6 @@ const useFetch = () => {
                     config
                 );
             }
-            console.log(resData);
             setResData({ ...resData, [urlEnding]: response.data });
         } catch (error) {
             console.log(error);
