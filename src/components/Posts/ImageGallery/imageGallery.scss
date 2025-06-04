@@ -1,0 +1,31 @@
+.single {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .imageWrapper {
+        width: 100%;
+        max-width: 800px; // or whatever size you want for the large image
+        img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+    }
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+
+    .imageWrapper {
+        img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+    }
+}

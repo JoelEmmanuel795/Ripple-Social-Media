@@ -1,0 +1,68 @@
+@use '../../../sass/_colors';
+
+.post-item-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 25px;
+    width: 100%;
+    padding: 25px;
+    margin-bottom: 15px;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 7px;
+
+    header.post-header {
+        display: flex;
+        flex: 1;
+        gap: 15px;
+        align-items: center;
+        justify-content: space-between;
+
+        div.name-and-published {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+
+            p {
+                font-size: small;
+                color: colors.$filterGray;
+            }
+        }
+
+        img.kebab-menu {
+            align-self: flex-start;
+            cursor: pointer;
+            width: 20px;
+            height: 20px;
+        }
+
+        textarea {
+            padding-left: 10px;
+            flex: 1;
+            font-size: medium;
+            border: none;
+            color: colors.$filterGray;
+            height: 100%;
+        }
+    }
+    footer.post-footer {
+        display: flex;
+        align-items: flex-end;
+        gap: 30px;
+
+        div {
+            display: flex;
+            gap: 15px;
+            cursor: pointer;
+        }
+
+        div.share-button {
+            flex: 1;
+        }
+
+        p.num-of-likes {
+            color: colors.$filterGray;
+            justify-self: flex-end;
+        }
+    }
+}

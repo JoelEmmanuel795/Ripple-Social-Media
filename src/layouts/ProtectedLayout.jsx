@@ -8,6 +8,7 @@ import NavBar from '../components/NavBar';
 const ProtectedLayout = () => {
     const [validated, setValidated] = useState(false);
     const token = useSelector((state) => state.user.accessToken);
+
     const dispatch = useDispatch();
 
     // Validate the token
@@ -26,10 +27,12 @@ const ProtectedLayout = () => {
                     dispatch(login_user(accessToken));
                 } catch {
                     dispatch(logout_user());
+                } finally {
                     setValidated(true);
                 }
             } else {
                 dispatch(logout_user());
+                setValidated(true);
             }
         };
         fetch();
@@ -37,6 +40,10 @@ const ProtectedLayout = () => {
 
     if (!token && validated) {
         return <Navigate to="/auth/login" replace />;
+    }
+
+    if (!validated) {
+        return <>Loading...</>;
     }
 
     return (
