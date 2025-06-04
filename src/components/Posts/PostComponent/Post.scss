@@ -1,6 +1,7 @@
 @use '../../../sass/_colors';
 
 .post-item-container {
+    break-inside: avoid;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -17,6 +18,13 @@
         gap: 15px;
         align-items: center;
         justify-content: space-between;
+
+        img.user-avatar {
+            border-radius: 25px;
+            width: 30px;
+            height: 30px;
+            border: 1px solid black;
+        }
 
         div.name-and-published {
             display: flex;

@@ -3,7 +3,7 @@ import logo from '../assets/images/logo.png';
 import posts_logo from '../assets/images/posts_logo.png';
 import iconFriends from '../assets/svgs/icon-friends.svg';
 import notificationBell from '../assets/svgs/notification_bell.svg';
-import profilePic from '../assets/images/users/jennifer.png';
+import profilePic from '../assets/images/users/default.png';
 import menu from '../assets/svgs/menu.svg';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
@@ -53,7 +53,11 @@ export default function NavBar() {
                     className="func-buttons"
                     onClick={() => setMenu(menuO ? false : true)}
                 >
-                    <img src={profilePic} alt="profile_pic" />
+                    <img
+                        className="navbar-avatar"
+                        src={profilePic}
+                        alt="profile_pic"
+                    />
                 </button>
 
                 <button

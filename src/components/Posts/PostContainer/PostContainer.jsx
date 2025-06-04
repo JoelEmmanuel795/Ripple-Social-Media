@@ -4,42 +4,55 @@ import { useParams } from 'react-router';
 import PostCreator from '../PostCreator/PostCreator';
 import Post from '../PostComponent/Post';
 import useFetch from '../../../utils/useFetch';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import Masonry from 'react-masonry-css';
 
 const PostContainer = () => {
-    //const access = useSelector((state) => state.user.accessToken);
-    const { resData, sendRequest, isLoading } = useFetch();
+    const [endpoint, setEndpoint] = useState();
+    const { resData, sendRequest, isLoading } = useFetch('/social/posts/');
     const { filter } = useParams();
+
+    const breakpointColumnsObj = {
+        default: 2,
+        768: 1,
+    };
 
     useEffect(() => {
         switch (filter) {
             case 'liked':
+                setEndpoint('/social/posts/likes/');
                 sendRequest('/social/posts/likes/', 'get');
                 break;
             case 'friends':
+                setEndpoint('/social/posts/friends/');
                 sendRequest('/social/posts/friends/', 'get');
                 break;
             case 'following':
-                sendRequest('/social/posts/likes/', 'get');
+                setEndpoint('/social/posts/following/');
+                sendRequest('/social/posts/following/', 'get');
                 break;
             default:
+                setEndpoint('/social/posts/');
                 sendRequest('/social/posts/', 'get');
         }
     }, [filter]);
 
-    useEffect(() => {
-        console.log(resData);
-    }, [resData]);
+    useEffect(() => {}, [resData]);
+
     return (
         <div className="post-master-container">
             <PostNavbar />
-            <div className="post-columns-container">
+            <Masonry
+                breakpointCols={breakpointColumnsObj}
+                className="post-columns-container"
+                columnClassName="post-column"
+            >
                 <PostCreator />
                 {isLoading && <>Loading...</>}
-                {resData['/social/posts/']?.results.map((post) => {
+                {resData[endpoint]?.results.map((post) => {
                     return <Post key={post.id} postData={post} />;
                 })}
-            </div>
+            </Masonry>
         </div>
     );
 };
