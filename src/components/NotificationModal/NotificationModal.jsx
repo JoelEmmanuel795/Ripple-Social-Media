@@ -8,10 +8,10 @@ export default function NotificationModal({ onClose }) {
     const { sendRequest, resData, isLoading, error } = useFetch();
     const [receivedRequests, setReceivedRequests] = useState([]);
     const [sentRequests, setSentRequests] = useState([]);
-    const userId = useSelector((state) => state.user.id);
-    console.log(userId);
+    const userId = useSelector((state) => state.user.user?.id);
 
     useEffect(() => {
+        console.log(userId);
         sendRequest('/social/friends/requests/');
     }, []);
 

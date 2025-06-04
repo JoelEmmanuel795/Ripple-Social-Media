@@ -16,7 +16,7 @@ const ProtectedLayout = () => {
         const fetch = async () => {
             setValidated(false);
             const accessToken = localStorage.getItem('access');
-            const user = localStorage.getItem('user');
+            const user = JSON.parse(localStorage.getItem('user'));
 
             if (accessToken) {
                 const api =

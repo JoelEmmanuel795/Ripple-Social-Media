@@ -1,16 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
 import userReducer from './slices/userSlice';
 
-/* const preloadedState = {
-    user: {
-        accessToken: localStorage.getItem('access') || undefined,
-        
-    },
-}; */
-
-export default configureStore({
+const store = configureStore({
     reducer: {
         user: userReducer,
     },
-    //preloadedState,
 });
+
+export default store;

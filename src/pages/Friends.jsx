@@ -8,7 +8,7 @@ export default function Friends() {
 
     useEffect(() => {
         sendRequest('/users/?limit=12');
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const users = resData['/users/?limit=12']?.results || [];
