@@ -1,11 +1,9 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
 import useFetch from '../../utils/useFetch';
 import './FriendCard.scss';
 
 export default function FriendCard({ friend }) {
-    const accessToken = useSelector((state) => state.user.accessToken);
-    const { sendRequest, resData, isLoading, error } = useFetch();
+    const { sendRequest, isLoading } = useFetch();
 
     const [isFollowing, setIsFollowing] = useState(
         friend.logged_in_user_is_following
@@ -53,7 +51,7 @@ export default function FriendCard({ friend }) {
 
             <div className="button-row">
                 <button
-                    className={`btn follow-btn ${isFollowing ? 'active' : ''}`}
+                    className={`btn-follow ${isFollowing ? 'active' : ''}`}
                     onClick={handleFollow}
                     disabled={isLoading}
                 >
@@ -61,7 +59,7 @@ export default function FriendCard({ friend }) {
                 </button>
 
                 <button
-                    className={`btn friend-btn ${friendStatus !== 'ADD FRIEND' ? 'active' : ''}`}
+                    className={`btn-friend ${friendStatus !== 'ADD FRIEND' ? 'active' : ''}`}
                     onClick={handleFriendRequest}
                     disabled={friendStatus !== 'ADD FRIEND' || isLoading}
                 >

@@ -8,6 +8,7 @@ import menu from '../assets/svgs/menu.svg';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { logout_user } from '../store/slices/userSlice';
+import NotificationModal from './NotificationModal/NotificationModal';
 
 export default function NavBar() {
     const navigate = useNavigate();
@@ -42,7 +43,11 @@ export default function NavBar() {
                 >
                     <img src={notificationBell} alt="bell" />
                 </button>
-                {notifications && <div className="popUp">notifications</div>}
+                {notifications && (
+                    <NotificationModal
+                        onClose={() => setNotifications(false)}
+                    />
+                )}
 
                 <button
                     className="func-buttons"
