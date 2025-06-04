@@ -8,7 +8,8 @@ import { usePaginatedPosts } from '../../../utils/usePaginatedPosts';
 
 const PostContainer = () => {
     const { filter } = useParams();
-    const { posts, isLoading, loadMore } = usePaginatedPosts(filter);
+    const LIMIT = 10;
+    const { posts, isLoading, loadMore } = usePaginatedPosts(filter, LIMIT);
 
     const breakpointColumnsObj = {
         default: 2,
@@ -29,9 +30,15 @@ const PostContainer = () => {
                     <Post key={post.id} postData={post} />
                 ))}
             </Masonry>
-            <button onClick={loadMore} disabled={isLoading}>
-                {isLoading ? 'Loading...' : 'Load more'}
-            </button>
+            {posts.length >= LIMIT && (
+                <button
+                    className="paggination-button"
+                    onClick={loadMore}
+                    disabled={isLoading}
+                >
+                    {isLoading ? 'Loading...' : 'Load more'}
+                </button>
+            )}
         </div>
     );
 };

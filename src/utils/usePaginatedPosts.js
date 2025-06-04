@@ -1,27 +1,25 @@
 import { useEffect, useState, useCallback } from 'react';
 import useFetch from './useFetch';
 
-const LIMIT = 10;
-
-const getEndpoint = (filter, offset) => {
+const getEndpoint = (filter, offset, limit) => {
     switch (filter) {
         case 'liked':
-            return `/social/posts/likes/?limit=${LIMIT}&offset=${offset}`;
+            return `/social/posts/likes/?limit=${limit}&offset=${offset}`;
         case 'friends':
-            return `/social/posts/friends/?limit=${LIMIT}&offset=${offset}`;
+            return `/social/posts/friends/?limit=${limit}&offset=${offset}`;
         case 'following':
-            return `/social/posts/following/?limit=${LIMIT}&offset=${offset}`;
+            return `/social/posts/following/?limit=${limit}&offset=${offset}`;
         default:
-            return `/social/posts/?limit=${LIMIT}&offset=${offset}`;
+            return `/social/posts/?limit=${limit}&offset=${offset}`;
     }
 };
 
-export const usePaginatedPosts = (filter) => {
+export const usePaginatedPosts = (filter, limit) => {
     const [offset, setOffset] = useState(0);
     const [posts, setPosts] = useState([]);
     const { resData, sendRequest, isLoading } = useFetch();
 
-    const endpoint = getEndpoint(filter, offset);
+    const endpoint = getEndpoint(filter, offset, limit);
 
     const loadPosts = useCallback(() => {
         sendRequest(endpoint, 'get');
@@ -46,7 +44,7 @@ export const usePaginatedPosts = (filter) => {
     }, [resData, endpoint]);
 
     const loadMore = () => {
-        setOffset((prev) => prev + LIMIT);
+        setOffset((prev) => prev + limit);
     };
 
     return { posts, isLoading, loadMore };
