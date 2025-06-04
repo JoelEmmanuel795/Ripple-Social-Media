@@ -16,6 +16,7 @@ const ProtectedLayout = () => {
         const fetch = async () => {
             setValidated(false);
             const accessToken = localStorage.getItem('access');
+            const user = JSON.parse(localStorage.getItem('user'));
 
             if (accessToken) {
                 const api =
@@ -24,7 +25,7 @@ const ProtectedLayout = () => {
                     await axios.post(api, {
                         token: accessToken,
                     });
-                    dispatch(login_user(accessToken));
+                    dispatch(login_user({ access: accessToken, user: user }));
                 } catch {
                     dispatch(logout_user());
                 } finally {

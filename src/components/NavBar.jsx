@@ -3,11 +3,12 @@ import logo from '../assets/images/logo.png';
 import posts_logo from '../assets/images/posts_logo.png';
 import iconFriends from '../assets/svgs/icon-friends.svg';
 import notificationBell from '../assets/svgs/notification_bell.svg';
-import profilePic from '../assets/images/users/jennifer.png';
+import profilePic from '../assets/images/users/default.png';
 import menu from '../assets/svgs/menu.svg';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { logout_user } from '../store/slices/userSlice';
+import NotificationModal from './NotificationModal/NotificationModal';
 
 export default function NavBar() {
     const navigate = useNavigate();
@@ -42,13 +43,21 @@ export default function NavBar() {
                 >
                     <img src={notificationBell} alt="bell" />
                 </button>
-                {notifications && <div className="popUp">notifications</div>}
+                {notifications && (
+                    <NotificationModal
+                        onClose={() => setNotifications(false)}
+                    />
+                )}
 
                 <button
                     className="func-buttons"
                     onClick={() => setMenu(menuO ? false : true)}
                 >
-                    <img src={profilePic} alt="profile_pic" />
+                    <img
+                        className="navbar-avatar"
+                        src={profilePic}
+                        alt="profile_pic"
+                    />
                 </button>
 
                 <button

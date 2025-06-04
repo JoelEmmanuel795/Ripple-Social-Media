@@ -2,7 +2,7 @@
 
 .friend-card {
     background-color: #fff;
-    border-radius: 12px;
+    border-radius: 4px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
     padding: 1.5rem;
     text-align: center;
@@ -35,11 +35,21 @@
         gap: 0.5rem;
         margin-bottom: 1rem;
 
-        .btn {
+        .btn-friend {
             border: 1px solid #ddd;
-            border-radius: 999px;
+            border-radius: 100px;
             padding: 0.4rem 1rem;
-            font-size: 0.85rem;
+            font-size: 10px;
+            cursor: pointer;
+            background-color: #fff;
+            transition: all 0.2s ease;
+        }
+
+        .btn-follow {
+            border: 1px solid #ddd;
+            border-radius: 100px;
+            padding: 0.4rem 1rem;
+            font-size: 10px;
             cursor: pointer;
             background-color: #fff;
             transition: all 0.2s ease;
