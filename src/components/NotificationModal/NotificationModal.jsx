@@ -10,32 +10,39 @@ export default function NotificationModal({ onClose }) {
     const [sentRequests, setSentRequests] = useState([]);
     const userId = useSelector((state) => state.user.user?.id);
 
+    // Fetch requests on mount
     useEffect(() => {
-        console.log(userId);
         sendRequest('/social/friends/requests/');
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {
         const data = resData['/social/friends/requests/']?.results;
         if (data && userId) {
-            const received = data.filter((req) => req.receiver?.id === userId);
-            const sent = data.filter((req) => req.requester?.id === userId);
+            const received = data.filter(
+                (req) => req.receiver?.id === userId && req.status === 'P'
+            );
+            const sent = data.filter(
+                (req) => req.requester?.id === userId && req.status === 'P'
+            );
             setReceivedRequests(received);
             setSentRequests(sent);
         }
     }, [resData, userId]);
 
-    console.log(sentRequests);
+    const handleUpdateStatus = (id, newStatus) => {
+        const url = `/social/friends/requests/${id}/`;
+        const payload = { status: newStatus };
 
-    const handleAccept = (id) => {
-        console.log('Accepted:', id);
-        // API PATCH call to accept could go here
+        sendRequest(url, payload, 'patch')
+            .then(() => {
+                sendRequest('/social/friends/requests/'); // Refresh the list
+            })
+            .catch((err) => console.error('Status update failed:', err));
     };
 
-    const handleReject = (id) => {
-        console.log('Rejected:', id);
-        // API PATCH call to reject could go here
-    };
+    const handleAccept = (id) => handleUpdateStatus(id, 'A');
+    const handleReject = (id) => handleUpdateStatus(id, 'R');
 
     return (
         <div className="notification-modal" onBlur={onClose} tabIndex="0">
@@ -49,11 +56,8 @@ export default function NotificationModal({ onClose }) {
                         <div key={req.id} className="notification-row">
                             <img
                                 className="avatar"
-                                src={
-                                    user.avatar ||
-                                    '/assets/images/default-avatar.png'
-                                }
-                                alt={user.first_name}
+                                src={user.avatar}
+                                alt={user.first_name?.charAt(0)}
                             />
                             <div className="info">
                                 <p className="name">
@@ -84,11 +88,8 @@ export default function NotificationModal({ onClose }) {
                         <div key={req.id} className="notification-row sent">
                             <img
                                 className="avatar"
-                                src={
-                                    user.avatar ||
-                                    '/assets/images/default-avatar.png'
-                                }
-                                alt={user.first_name}
+                                src={user.avatar}
+                                alt={user.first_name?.charAt(0)}
                             />
                             <div className="info">
                                 <p className="name">
