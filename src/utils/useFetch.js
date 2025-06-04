@@ -56,7 +56,7 @@ const useFetch = () => {
      */
     const sendRequest = async (urlEnding, payload, method = 'get') => {
         setIsLoading(true);
-        console.log(token);
+        //console.log(token);
         const config = token
             ? { headers: { Authorization: `Bearer ${token}` } }
             : {};

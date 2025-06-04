@@ -8,15 +8,17 @@ export default function Friends() {
 
     useEffect(() => {
         sendRequest('/users/?limit=12');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
+    const users = resData['/users/?limit=12']?.results || [];
     return (
         <div className="friends-page">
             {isLoading && <p>Loading users...</p>}
             {error && <p className="error">Error loading users.</p>}
 
             <div className="friend-list">
-                {resData?.results?.map((friend) => (
+                {users.map((friend) => (
                     <FriendCard key={friend.id} friend={friend} />
                 ))}
             </div>
