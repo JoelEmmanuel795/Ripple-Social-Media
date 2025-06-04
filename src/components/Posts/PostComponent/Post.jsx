@@ -21,7 +21,7 @@ const Post = ({ postData }) => {
     const { sendRequest } = useFetch();
 
     useEffect(() => {
-        console.log(postData);
+        //console.log(postData);
         setFirstName(postData.user.first_name);
         setLastName(postData.user.last_name);
         setPublishedAt(postData.created);
@@ -29,7 +29,7 @@ const Post = ({ postData }) => {
         setLikes(postData.amount_of_likes);
         setLiked(postData.logged_in_user_liked);
         setAvatar(postData.user.avatar);
-        console.log(postData.images);
+        //console.log(postData.images);
     }, []);
 
     function handleKebabButton() {
