@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { login_user } from '../store/slices/userSlice';
 import useFetch from '../utils/useFetch';
+import { Link } from 'react-router';
 
 const Login = () => {
     const { resData, sendRequest } = useFetch();
@@ -42,7 +43,7 @@ const Login = () => {
         <div className="container-right">
             <div className="header">
                 Don't have an account?
-                <a className="button signup">Sign up</a>
+                <Link to={'/auth/signup'} className="button-signup">SIGN UP</Link>
             </div>
             <div className="form-container">
                 <div className="content-inner">
@@ -67,6 +68,7 @@ const Login = () => {
                                 <label>Password</label>
                             </div>
                         </div>
+                        <p><Link to={'/auth/password-reset'}>Forgot Password?</Link></p>
                         <input
                             type="submit"
                             value="Sign In"

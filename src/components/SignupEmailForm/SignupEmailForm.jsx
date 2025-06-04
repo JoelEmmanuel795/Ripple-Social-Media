@@ -1,18 +1,25 @@
+import { Link } from 'react-router';
 import emailSVG from '../../assets/svgs/mail.svg';
+import useFetch from '../../utils/useFetch';
+import { useEffect } from 'react';
 
 const SignupEmailForm = ({ setFormData, goNext }) => {
+    
+
     const handleOnSubmit = (event) => {
         event.preventDefault();
         setFormData(event.target[0].value);
         goNext();
     };
 
+    
+
     return (
         <>
             <div className="container-right">
                 <div className="header">
                     Already have an account?
-                    <a className="button signup">Sign in</a>
+                    <Link to={'/auth/login'} className="button-signup">SIGN IN</Link>
                 </div>
                 <div className="form-container">
                     <div className="content-inner">
