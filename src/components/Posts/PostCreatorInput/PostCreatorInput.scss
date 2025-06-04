@@ -14,7 +14,7 @@
 }
 
 .post-input-container {
-    background-color: white;
+    background-color: rgb(255, 255, 255);
     position: relative;
     top: -100px;
     left: -150px;
@@ -26,7 +26,30 @@
     margin-bottom: 15px;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
     border-radius: 7px;
-    gap: 50px;
+
+    .modal-close-btn {
+        position: relative;
+        top: -60px; // adjust as needed
+        left: 470px; // adjust as needed
+        z-index: 1001;
+        border: none;
+        border-radius: 50%;
+        background: rgba(0, 0, 0, 0);
+        width: 32px;
+        height: 32px;
+        font-size: 2rem;
+        color: #ffffff;
+        cursor: pointer;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.2s;
+    }
+    .modal-close-btn:hover {
+        background: #eee;
+        color: #333;
+    }
 
     .avatar-and-input {
         display: flex;
@@ -55,16 +78,54 @@
         }
     }
 
+    div.image-preview-container {
+        margin-top: 5%;
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+        margin-left: 10%;
+
+        .image-preview-wrapper {
+            position: relative;
+
+            img.image-preview {
+                height: 120px;
+                width: 120px;
+                object-fit: cover;
+                border-radius: 8px;
+            }
+
+            img.remove-photo-btn {
+                top: 0;
+                left: 0;
+                position: absolute;
+                width: 24px;
+                height: 24px;
+                cursor: pointer;
+            }
+
+            div.image-preview-text {
+                font-size: small;
+            }
+        }
+    }
+
     footer {
         display: flex;
         justify-content: space-between;
         flex: 1;
+        margin-top: 30px;
 
         img.photo-upload-button {
             width: 30px;
             height: 30px;
             align-self: center;
             cursor: pointer;
+
+            &:hover {
+                transform: scale(1.2);
+                transition: transform 0.2s ease-in-out;
+            }
         }
 
         .create-post-bgr {
@@ -86,7 +147,7 @@
         }
 
         .create-post-bgr:hover {
-            transform: scale(1.05);
+            transform: scale(1.1);
             transition: transform 0.2s ease-in-out;
         }
     }
