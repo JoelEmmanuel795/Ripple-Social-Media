@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import share from '../../../assets/svgs/share.svg';
 import heart from '../../../assets/svgs/heart.svg';
 import './Post.scss';
@@ -6,14 +6,22 @@ import userAvatar from '../../../assets/images/users/jennifer.png';
 import kebabMenu from '../../../assets/svgs/menu.svg';
 import { formatDistanceToNow } from 'date-fns';
 
-const Post = () => {
-    const [firstName, setFirstName] = useState('Jennifer');
-    const [lastName, setLastName] = useState('Smith');
+const Post = ({ postData }) => {
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
     const [publishedAt, setPublishedAt] = useState('2023-10-01T12:00:00Z');
-    const [content, setContent] = useState(
-        'This is a sample post content. We like to write posts about random things when we are random people.'
-    );
+    const [content, setContent] = useState('');
     const [likes, setLikes] = useState(0);
+
+    useEffect(() => {
+        console.log(postData);
+        setFirstName(postData.user.firstname);
+        setLastName(postData.user.lastname);
+        setPublishedAt(postData.created);
+        setContent(postData.content);
+        setLikes(postData.likes);
+        console.log(postData.images);
+    }, []);
 
     function handleKebabButton() {
         console.log('Kebab!');
@@ -32,11 +40,13 @@ const Post = () => {
                         })}
                     </p>
                 </div>
-                <img
-                    className="kebab-menu"
-                    src={kebabMenu}
-                    onClick={handleKebabButton}
-                ></img>
+                {
+                    <img
+                        className="kebab-menu"
+                        src={kebabMenu}
+                        onClick={handleKebabButton}
+                    ></img>
+                }
             </header>
             <p className="post-text">{content}</p>
             <footer className="post-footer">
