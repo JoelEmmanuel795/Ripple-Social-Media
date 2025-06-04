@@ -5,11 +5,17 @@ import PostCreator from '../PostCreator/PostCreator';
 import Post from '../PostComponent/Post';
 import useFetch from '../../../utils/useFetch';
 import { useEffect, useState } from 'react';
+import Masonry from 'react-masonry-css';
 
 const PostContainer = () => {
     const [endpoint, setEndpoint] = useState();
     const { resData, sendRequest, isLoading } = useFetch('/social/posts/');
     const { filter } = useParams();
+
+    const breakpointColumnsObj = {
+        default: 2,
+        768: 1,
+    };
 
     useEffect(() => {
         switch (filter) {
@@ -36,13 +42,17 @@ const PostContainer = () => {
     return (
         <div className="post-master-container">
             <PostNavbar />
-            <div className="post-columns-container">
+            <Masonry
+                breakpointCols={breakpointColumnsObj}
+                className="post-columns-container"
+                columnClassName="post-column"
+            >
                 <PostCreator />
                 {isLoading && <>Loading...</>}
                 {resData[endpoint]?.results.map((post) => {
                     return <Post key={post.id} postData={post} />;
                 })}
-            </div>
+            </Masonry>
         </div>
     );
 };
