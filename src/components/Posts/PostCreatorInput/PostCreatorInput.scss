@@ -1,0 +1,97 @@
+@use '../../../sass/_colors';
+
+.post-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+
+.post-input-container {
+    background-color: white;
+    position: relative;
+    top: -100px;
+    left: -150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 500px;
+    padding: 30px;
+    margin-bottom: 15px;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 7px;
+    gap: 50px;
+
+    .avatar-and-input {
+        display: flex;
+        flex: 1;
+        gap: 20px;
+        align-items: center;
+        padding-right: 20px;
+
+        img {
+            align-self: flex-start;
+            width: 60px;
+            height: 60px;
+        }
+
+        textarea {
+            padding-left: 10px;
+            flex: 1;
+            font-size: medium;
+            border: none;
+            color: black;
+            height: 100px;
+
+            &::placeholder {
+                color: colors.$filterGray;
+            }
+        }
+    }
+
+    footer {
+        display: flex;
+        justify-content: space-between;
+        flex: 1;
+
+        img.photo-upload-button {
+            width: 30px;
+            height: 30px;
+            align-self: center;
+            cursor: pointer;
+        }
+
+        .create-post-bgr {
+            align-self: flex-end;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-left: 5px;
+            background-image: colors.$linear-gradient;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            cursor: pointer;
+
+            img.create-post {
+                width: 22px;
+                height: 22px;
+            }
+        }
+
+        .create-post-bgr:hover {
+            transform: scale(1.05);
+            transition: transform 0.2s ease-in-out;
+        }
+    }
+}
+
+.invisible {
+    display: none;
+}

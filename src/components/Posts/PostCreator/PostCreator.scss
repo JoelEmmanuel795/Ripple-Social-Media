@@ -8,6 +8,7 @@
     margin-bottom: 15px;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
     border-radius: 7px;
+    cursor: pointer;
 
     .avatar-and-input {
         display: flex;
@@ -21,7 +22,7 @@
             height: 60px;
         }
 
-        textarea {
+        p {
             padding-left: 10px;
             flex: 1;
             font-size: medium;
@@ -39,11 +40,15 @@
         width: 60px;
         height: 60px;
         border-radius: 50%;
-        cursor: pointer;
 
         img.create-post {
             width: 22px;
             height: 22px;
         }
     }
+}
+
+.post-creator-container:hover {
+    transform: scale(1.005);
+    transition: transform 0.2s ease-in-out;
 }
