@@ -1,6 +1,7 @@
 @use '../../../sass/_colors';
 
 .post-item-container {
+    break-inside: avoid;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
