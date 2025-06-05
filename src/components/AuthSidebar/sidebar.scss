@@ -1,0 +1,76 @@
+@use '../../sass/colors';
+
+.container-left {
+    height: 100%;
+    width: 40%;
+    background-image:
+        url('../../assets/images/background_image.png'), colors.$linear-gradient;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .left-top {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: colors.$white;
+        max-width: 275px;
+        text-align: center;
+
+        img {
+            margin-bottom: 4%;
+            font-weight: bold;
+        }
+
+        h1 {
+            margin-bottom: 4%;
+            font-weight: 300;
+            font-size: 30px;
+        }
+
+        p {
+            margin-bottom: 10%;
+            line-height: 24px;
+            font-weight: 300;
+            opacity: 0.6;
+        }
+
+        .button-container {
+            display: flex;
+            gap: 5%;
+        }
+    }
+
+    .left-bottom {
+        position: absolute;
+        bottom: 40px;
+        color: white;
+        p {
+            font-size: 12px;
+            font-weight: 300;
+        }
+
+        .icon-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 42px;
+            column-gap: 16px;
+            > div {
+                width: 40px;
+                height: 40px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                img {
+                    opacity: 0.35;
+                    width: 100%;
+                }
+                &:first-child {
+                    margin: 0;
+                }
+            }
+        }
+    }
+}

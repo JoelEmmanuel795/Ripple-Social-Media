@@ -1,0 +1,40 @@
+@use '../../../sass/colors';
+@use '../../../sass/utils/buttons';
+
+.post-master-container {
+    padding: 0 5%;
+    margin-top: 2rem;
+    padding-bottom: 10px;
+    width: 100%;
+}
+
+.post-columns-container {
+    display: flex;
+    margin-left: -1rem;
+    width: auto;
+}
+
+.post-column {
+    padding-left: 1rem;
+    background-clip: padding-box;
+}
+
+.post-item-container {
+    margin-bottom: 1rem;
+}
+
+.paggination-button {
+    @include buttons.button();
+    margin: 10px auto; // 👈 this creates spacing from the bottom
+    background: colors.$linear-gradient;
+    color: white;
+    font-size: 12px;
+    border: none;
+    min-width: 200px;
+
+    &:hover {
+        opacity: 0.9;
+        transform: scale(1.03);
+        transition: all 0.2s ease;
+    }
+}
