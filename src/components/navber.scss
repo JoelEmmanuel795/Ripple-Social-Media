@@ -16,6 +16,16 @@
     left: 0;
     box-shadow: 0px -3px 12px 0px black;
 }
+text {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 20px;
+
+    img {
+        height: 25px;
+    }
+}
 a {
     text-decoration: none;
     margin: 0px 10px;

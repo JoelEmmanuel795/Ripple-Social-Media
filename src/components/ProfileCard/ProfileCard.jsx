@@ -14,6 +14,13 @@ export default function ProfileCard() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
+    useEffect(() => {
+        if (!isEditing) {
+            sendRequest('/users/me/');
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [isEditing]);
+
     const user = resData['/users/me/'];
 
     if (isLoading) return <p>Loading...</p>;

@@ -16,7 +16,6 @@ export default function NavBar() {
     const dispatch = useDispatch();
     const [notifications, setNotifications] = useState(false);
     const [menuO, setMenu] = useState(false);
-    // eslint-disable-next-line no-unused-vars
     const [badgeCount, setBadgeCount] = useState(0);
 
     const handleLogout = () => {
@@ -26,9 +25,11 @@ export default function NavBar() {
 
     return (
         <div className="nav-bar">
-            <h3>
-                <img src={logo} alt="logo" /> Motion
-            </h3>
+            <NavLink to={'/'}>
+                <text>
+                    <img src={logo} alt="logo" /> Motion
+                </text>
+            </NavLink>
             <nav>
                 <NavLink to={'/posts/all'}>
                     <img src={posts_logo} alt="postsLogo" /> Posts
