@@ -22,7 +22,6 @@ export default function ProfileEditCard({ user, onCancel }) {
     const [selectedImage, setSelectedImage] = useState(null);
     const fileInputRef = useRef();
 
-    // 🧠 Set initial form values from `user` prop
     useEffect(() => {
         if (user) {
             setFormData({
@@ -102,7 +101,7 @@ export default function ProfileEditCard({ user, onCancel }) {
             data.append('avatar', '');
         }
 
-        // Skip sending tags for now (Motion API does not support it via PATCH easily)
+        // Can't figure out how to do tags (interests), API docs insufficient
 
         try {
             await axios.patch(
@@ -115,7 +114,7 @@ export default function ProfileEditCard({ user, onCancel }) {
                     },
                 }
             );
-            alert('Profile updated successfully!');
+            //alert('Profile updated successfully!');
             onCancel?.();
         } catch (error) {
             console.error('Update failed:', error);
@@ -204,6 +203,8 @@ export default function ProfileEditCard({ user, onCancel }) {
 
                 <div className="form-field full-width">
                     <label>Things I like</label>
+                </div>
+                <div className="form-field full-width">
                     <div className="tags">
                         {formData.things_user_likes.map((tag, index) => (
                             <span key={index} className="tag">
@@ -217,13 +218,17 @@ export default function ProfileEditCard({ user, onCancel }) {
                             </span>
                         ))}
                     </div>
+                </div>
+                <div className="form-field full-width">
                     <div className="tag-input-row">
-                        <input
-                            type="text"
-                            placeholder="Type something..."
-                            value={newInterest}
-                            onChange={(e) => setNewInterest(e.target.value)}
-                        />
+                        <div className="input-wrapper">
+                            <input
+                                type="text"
+                                placeholder="Type something..."
+                                value={newInterest}
+                                onChange={(e) => setNewInterest(e.target.value)}
+                            />
+                        </div>
                         <button onClick={handleTagAdd}>ADD</button>
                     </div>
                 </div>

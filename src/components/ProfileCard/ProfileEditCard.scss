@@ -5,11 +5,10 @@
 .profile-edit-card {
     display: flex;
     background: colors.$white;
-    border-radius: 20px;
+    border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     overflow: auto;
     width: 100%;
-    // max-width: 1000px;
     max-height: 60%;
     margin: 0 auto;
 
@@ -32,11 +31,6 @@
 
         .update-image-button {
             @include buttons.button;
-            background: colors.$linear-gradient;
-            color: colors.$white;
-            border: none;
-            font-size: 0.9rem;
-            padding: 0.5rem 1rem;
         }
 
         .upload-menu {
@@ -59,13 +53,7 @@
         }
 
         .delete-button {
-            background: red;
-            color: white;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            font-weight: bold;
-            cursor: pointer;
+            @include buttons.button;
         }
 
         .save-button {
@@ -73,7 +61,7 @@
             background: colors.$linear-gradient;
             color: colors.$white;
             border: none;
-            font-size: 0.9rem;
+            font-size: 10px;
             padding: 0.5rem 1rem;
         }
     }
@@ -90,6 +78,7 @@
 
         .form-field.full-width {
             grid-column: span 2;
+            margin-bottom: 5px;
 
             .input-wrapper {
                 textarea {
@@ -115,7 +104,7 @@
                 display: flex;
                 flex-wrap: wrap;
                 gap: 0.5rem;
-                margin-top: 0.5rem;
+                margin-top: -5px;
 
                 .tag {
                     background: rgb(238, 232, 232);
@@ -140,22 +129,14 @@
             .tag-input-row {
                 display: flex;
                 gap: 1rem;
-                margin-top: 0.5rem;
+                width: 100%;
 
                 input {
-                    flex: 1;
-                    padding: 0.5rem;
-                    border: 1px solid #ccc;
-                    border-radius: 5px;
+                    width: 90%;
                 }
 
                 button {
                     @include buttons.button;
-                    background: colors.$linear-gradient;
-                    color: colors.$white;
-                    border: none;
-                    padding: 0.5rem 1rem;
-                    font-size: 0.9rem;
                 }
             }
         }
