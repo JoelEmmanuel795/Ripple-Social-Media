@@ -1,5 +1,16 @@
-const Signup = () => {
-    return <>Signup</>;
-};
+import SignupEmailForm from '../components/SignupEmailForm/SignupEmailForm';
 
-export default Signup;
+
+
+
+
+export default function SignUp() {
+
+    return (
+        <>
+            
+                <SignupEmailForm/>
+            
+        </>
+    ); 
+}

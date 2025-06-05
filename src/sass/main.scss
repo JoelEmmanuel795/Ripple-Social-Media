@@ -2,3 +2,6 @@
 @use 'colors';
 @use 'utils/buttons';
 @use 'utils/formField';
+@use '../components/navber.scss';
+@use '../components/SignupEmailForm/signupEmailForm.scss';
+@use '../components/SignupVerification/SignupVerification.scss'
