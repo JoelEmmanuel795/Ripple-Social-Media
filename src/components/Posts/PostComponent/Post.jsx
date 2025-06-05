@@ -9,6 +9,7 @@ import { formatDistanceToNow } from 'date-fns';
 import ImageGallery from '../ImageGallery/ImageGallery';
 import useFetch from '../../../utils/useFetch';
 import PostView from '../PostView/PostView';
+import { useNavigate } from 'react-router';
 
 const Post = ({ postData }) => {
     const navigate = useNavigate();
@@ -86,23 +87,23 @@ const Post = ({ postData }) => {
     }
 
     return (
-        <div className="post-item-container">
-            <header className="post-header">
-                <img
-                    className="user-avatar"
-                    src={avatar ? avatar : userAvatar}
-                    onClick={() => navigate(`/profile/${postData.user.id}`)}
-                />
-                <div className="name-and-published">
-                    {firstName} {lastName}
-                    <br />
-                    <p>
-                        {formatDistanceToNow(new Date(publishedAt), {
-                            addSuffix: true,
-                        })}
-                    </p>
-                </div>
-                {
+        <>
+            <div className="post-item-container">
+                <header className="post-header">
+                    <img
+                        className="user-avatar"
+                        src={avatar ? avatar : userAvatar}
+                        onClick={() => navigate(`/profile/${postData.user.id}`)}
+                    />
+                    <div className="name-and-published">
+                        {firstName} {lastName}
+                        <br />
+                        <p>
+                            {formatDistanceToNow(new Date(publishedAt), {
+                                addSuffix: true,
+                            })}
+                        </p>
+                    </div>
                     <img
                         className="user-avatar"
                         src={avatar ? avatar : userAvatar}

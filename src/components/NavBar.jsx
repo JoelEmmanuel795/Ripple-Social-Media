@@ -60,68 +60,78 @@ export default function NavBar() {
 
     return (
         <>
-            <div className='outet-navebar'>
-            
-                <NavLink to={'/'} className='motion-logo'>
+            <div className="outet-navebar">
+                <NavLink to={'/'} className="motion-logo">
                     <text>
                         <img src={logo} alt="logo" /> Motion
                     </text>
                 </NavLink>
                 <div className="nav-bar">
-                <nav>
-                    <NavLink to={'/posts/all'}
-                            className={({ isActive }) => isActive ? "upper-active" : ""}>
-                        <img src={posts_logo} alt="postsLogo"/> Posts
-                    </NavLink>
-                    <NavLink to={'/friends'}
-                            className={({ isActive }) => isActive ? "upper-active" : ""}>
-                        <img src={iconFriends} alt="friendsLogo" /> Find Friends
-                    </NavLink>
-                </nav>
-                <div className="leftGroup">
-                    <button
-                        className="func-buttons notification-wrapper"
-                        onClick={() => setNotifications(!notifications)}
-                    >
-                        <img src={notificationBell} alt="bell" />
-                        {badgeCount > 0 && (
-                            <span className="notification-badge">{badgeCount}</span>
+                    <nav>
+                        <NavLink
+                            to={'/posts/all'}
+                            className={({ isActive }) =>
+                                isActive ? 'upper-active' : ''
+                            }
+                        >
+                            <img src={posts_logo} alt="postsLogo" /> Posts
+                        </NavLink>
+                        <NavLink
+                            to={'/friends'}
+                            className={({ isActive }) =>
+                                isActive ? 'upper-active' : ''
+                            }
+                        >
+                            <img src={iconFriends} alt="friendsLogo" /> Find
+                            Friends
+                        </NavLink>
+                    </nav>
+                    <div className="leftGroup">
+                        <button
+                            className="func-buttons notification-wrapper"
+                            onClick={() => setNotifications(!notifications)}
+                        >
+                            <img src={notificationBell} alt="bell" />
+                            {badgeCount > 0 && (
+                                <span className="notification-badge">
+                                    {badgeCount}
+                                </span>
+                            )}
+                        </button>
+                        {notifications && (
+                            <NotificationModal
+                                onClose={() => setNotifications(false)}
+                                setBadgeCount={setBadgeCount}
+                            />
                         )}
-                    </button>
-                    {notifications && (
-                        <NotificationModal
-                            onClose={() => setNotifications(false)}
-                            setBadgeCount={setBadgeCount}
-                        />
-                    )}
 
-                <button
-                    className="func-buttons"
-                    onClick={() => setMenu(menuO ? false : true)}
-                >
-                    <img
-                        className="navbar-avatar"
-                        src={userAvatar || profilePic}
-                        alt="profile_pic"
-                    />
-                </button>
+                        <button
+                            className="func-buttons"
+                            onClick={() => setMenu(menuO ? false : true)}
+                        >
+                            <img
+                                className="navbar-avatar"
+                                src={userAvatar || profilePic}
+                                alt="profile_pic"
+                            />
+                        </button>
 
-                <button
-                    className="func-buttons"
-                    onClick={() => setMenu(menuO ? false : true)}
-                >
-                    <img src={menu} alt="mnue-icon" />
-                </button>
-                {menuO && (
-                    <div className="dropdown-menu" ref={menuRef}>
-                        <NavLink to={'/profile'}>
-                            <button className="dropdown-item">
-                                <span>Profile</span>
-                            </button>
-                        </div>
-                    )}
+                        <button
+                            className="func-buttons"
+                            onClick={() => setMenu(menuO ? false : true)}
+                        >
+                            <img src={menu} alt="mnue-icon" />
+                        </button>
+                        {menuO && (
+                            <div className="dropdown-menu" ref={menuRef}>
+                                <NavLink to={'/profile'} />
+                                <button className="dropdown-item">
+                                    <span>Profile</span>
+                                </button>
+                            </div>
+                        )}
+                    </div>
                 </div>
-            </div>
             </div>
         </>
     );
