@@ -20,6 +20,8 @@
         img {
             width: 60px;
             height: 60px;
+            border-radius: 50%;
+            border: solid 5px colors.$linear-gradient;
         }
 
         p {
@@ -29,6 +31,7 @@
             border: none;
             color: colors.$filterGray;
             height: 100%;
+            text-decoration: dotted;
         }
     }
     .create-post-bgr {

@@ -1,0 +1,204 @@
+@use '../../../sass/_colors';
+
+.post-edit-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+
+    .post-edit-container {
+        background-color: rgb(253, 250, 255);
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        width: 700px;
+        min-height: 500px;
+        padding: 20px 20px 20px 35px;
+        margin-bottom: 15px;
+        box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+        border-radius: 7px;
+
+        .modal-close-btn {
+            position: relative;
+            top: -50px;
+            left: 685px;
+            z-index: 1001;
+            border: none;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0);
+            width: 32px;
+            height: 32px;
+            font-size: 2rem;
+            color: #ffffff;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        .modal-close-btn:hover {
+            background: #eee;
+            color: #333;
+        }
+        header.post-header {
+            position: relative;
+            top: -30px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            justify-content: space-between;
+
+            div.name-and-published {
+                display: flex;
+                flex-direction: column;
+                flex: 1;
+
+                p {
+                    font-size: small;
+                    color: colors.$filterGray;
+                }
+            }
+
+            img.kebab-menu {
+                align-self: flex-start;
+                cursor: pointer;
+                width: 20px;
+                height: 20px;
+            }
+
+            textarea {
+                padding-left: 10px;
+                flex: 1;
+                font-size: medium;
+                border: none;
+                color: colors.$filterGray;
+                max-height: 100%;
+            }
+        }
+
+        .post-columns-container {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1.35fr 1fr;
+            margin-top: -5px;
+
+            .edit-column-left {
+                height: 100%;
+                grid-column: 1;
+                flex: 1;
+
+                .image-preview-container-edit {
+                    display: flex;
+                    flex-direction: row;
+                    gap: 10px;
+                    flex-wrap: wrap;
+
+                    .image-preview-wrapper-edit {
+                        position: relative;
+
+                        .image-preview-edit {
+                            width: 160px;
+                            object-fit: cover;
+                            border-radius: 8px;
+                        }
+
+                        .remove-photo-btn-edit {
+                            top: 0;
+                            left: 0;
+                            position: absolute;
+                            width: 24px;
+                            height: 24px;
+                            cursor: pointer;
+                        }
+
+                        .image-preview-text-edit {
+                            font-size: x-small;
+                            max-width: 160px;
+                        }
+                    }
+                }
+            }
+
+            .edit-column-right {
+                grid-column: 2;
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+
+                .avatar-and-input-edit {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 20px;
+                    padding-right: 20px;
+                    height: 100%;
+
+                    textarea {
+                        padding-left: 10px;
+                        height: auto;
+                        font-size: medium;
+                        border: none;
+                        color: black;
+                        flex: 1;
+
+                        &::placeholder {
+                            color: colors.$filterGray;
+                        }
+                    }
+                }
+            }
+        }
+
+        footer {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+
+            .photo-upload-button-edit {
+                width: 30px;
+                height: 30px;
+                align-self: center;
+                cursor: pointer;
+
+                &:hover {
+                    transform: scale(1.2);
+                    transition: transform 0.2s ease-in-out;
+                }
+            }
+
+            .create-post-bgr-edit {
+                align-self: flex-end;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding-left: 5px;
+                background-image: colors.$linear-gradient;
+                width: 60px;
+                height: 60px;
+                border-radius: 50%;
+                cursor: pointer;
+
+                .create-post-edit {
+                    width: 22px;
+                    height: 22px;
+                }
+
+                &:hover {
+                    transform: scale(1.1);
+                    transition: transform 0.2s ease-in-out;
+                }
+            }
+        }
+    }
+}
+
+.invisible {
+    display: none;
+}

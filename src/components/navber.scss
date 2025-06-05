@@ -20,6 +20,7 @@ text {
     background-color: white;
     margin: 0px 15px;
     padding: 0px 3px;
+    cursor: pointer;
 }
 .notification-wrapper {
     position: relative;
@@ -41,6 +42,8 @@ text {
 
 .leftGroup {
     position: relative;
+    display: flex;
+    align-items: center;
 
     .dropdown-menu {
         position: absolute;
@@ -62,10 +65,10 @@ text {
             border: none;
             width: 100%;
             text-align: left;
-            cursor: pointer;
             font-size: 14px;
             color: #333;
             transition: 0.2s ease;
+            cursor: pointer;
 
             &:hover {
                 background-color: #f1f1f1;
@@ -79,8 +82,9 @@ text {
 }
 
 .navbar-avatar {
-    height: 30px;
-    width: 30px;
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
 }
 .motion-logo{
     float: left;
