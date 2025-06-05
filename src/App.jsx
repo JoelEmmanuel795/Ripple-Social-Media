@@ -6,6 +6,7 @@ import AuthLayout from './layouts/AuthLayout';
 import ProtectedLayout from './layouts/ProtectedLayout';
 import PostContainer from './components/Posts/PostContainer/PostContainer';
 import Friends from './pages/Friends';
+import Profile from './pages/Profile';
 
 function App() {
     return (
@@ -18,6 +19,7 @@ function App() {
             <Route element={<ProtectedLayout />}>
                 <Route path="posts/:filter" element={<PostContainer />} />
                 <Route path="friends" element={<Friends />} />
+                <Route path="profile" element={<Profile />} />
             </Route>
         </Routes>
     );

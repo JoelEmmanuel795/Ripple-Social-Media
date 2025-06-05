@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import useFetch from '../../utils/useFetch';
 import { useSelector } from 'react-redux';
 
-export default function NotificationModal({ onClose }) {
+export default function NotificationModal({ onClose, setBadgeCount }) {
     const { sendRequest, resData, isLoading, error } = useFetch();
     const [receivedRequests, setReceivedRequests] = useState([]);
     const [sentRequests, setSentRequests] = useState([]);
@@ -27,6 +27,7 @@ export default function NotificationModal({ onClose }) {
             );
             setReceivedRequests(received);
             setSentRequests(sent);
+            setBadgeCount(received.length);
         }
     }, [resData, userId]);
 
