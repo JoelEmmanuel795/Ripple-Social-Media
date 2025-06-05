@@ -104,19 +104,6 @@ const Post = ({ postData }) => {
                             })}
                         </p>
                     </div>
-                    <img
-                        className="user-avatar"
-                        src={avatar ? avatar : userAvatar}
-                    ></img>
-                    <div className="name-and-published">
-                        {firstName} {lastName}
-                        <br />
-                        <p>
-                            {formatDistanceToNow(new Date(publishedAt), {
-                                addSuffix: true,
-                            })}
-                        </p>
-                    </div>
                     <div
                         className="dropdown-wrapper"
                         style={{ position: 'relative' }}

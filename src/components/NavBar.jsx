@@ -124,9 +124,16 @@ export default function NavBar() {
                         </button>
                         {menuO && (
                             <div className="dropdown-menu" ref={menuRef}>
-                                <NavLink to={'/profile'} />
-                                <button className="dropdown-item">
-                                    <span>Profile</span>
+                                <NavLink to={'/profile'}>
+                                    <button className="dropdown-item">
+                                        <span>Profile</span>
+                                    </button>
+                                </NavLink>
+                                <button
+                                    onClick={handleLogout}
+                                    className="dropdown-item"
+                                >
+                                    <span>Logout</span>
                                 </button>
                             </div>
                         )}
