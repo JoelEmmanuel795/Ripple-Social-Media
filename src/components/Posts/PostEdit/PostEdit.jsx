@@ -5,7 +5,6 @@ import useFetch from '../../../utils/useFetch';
 import send_button from '../../../assets/svgs/send_button.svg';
 import photo_upload_button from '../../../assets/misc/photo_upload_button.png';
 import white_x_rounded from '../../../assets/misc/white_x_rounded.png';
-import userAvatar from '../../../assets/images/users/jennifer.png';
 import { formatDistanceToNow } from 'date-fns';
 
 const PostEdit = ({ isShown, showModalFunc, postData, postID }) => {
@@ -15,6 +14,7 @@ const PostEdit = ({ isShown, showModalFunc, postData, postID }) => {
     const [lastName, setLastName] = useState('');
     const [publishedAt, setPublishedAt] = useState('2023-10-01T12:00:00Z');
     const [postText, setPostText] = useState('');
+    const [userAvatar, setUserAvatar] = useState('');
     const [postEditPhotos, setPostEditPhotos] = useState([]);
     const [photoEditPreviews, setPhotoEditPreviews] = useState([]);
     const [existingImages, setExistingImages] = useState([]);
@@ -32,6 +32,7 @@ const PostEdit = ({ isShown, showModalFunc, postData, postID }) => {
             setFirstName(postData.user.first_name);
             setLastName(postData.user.last_name);
             setPublishedAt(postData.created);
+            setUserAvatar(postData.user.avatar || '');
 
             // Only keep image URLs in existingImages, not postEditPhotos
             setExistingImages(
