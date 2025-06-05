@@ -4,13 +4,22 @@ import ProfileEditCard from './ProfileEditCard';
 import profilePic from '../../assets/images/users/default.png';
 
 import useFetch from '../../utils/useFetch';
+import { useParams } from 'react-router';
 
 export default function ProfileCard() {
+    const { id } = useParams();
     const [isEditing, setIsEditing] = useState(false);
+    const [isFollowing, setIsFollowing] = useState(false);
+    const [friendStatus, setFriendStatus] = useState('');
     const { sendRequest, resData, isLoading, error } = useFetch();
 
     useEffect(() => {
-        sendRequest('/users/me/');
+        if (!id) {
+            sendRequest('/users/me/');
+        } else {
+            sendRequest(`/users/${id}/`);
+        }
+
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -21,7 +30,41 @@ export default function ProfileCard() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isEditing]);
 
-    const user = resData['/users/me/'];
+    let user;
+    if (!id) {
+        user = resData['/users/me/'];
+    } else {
+        user = resData[`/users/${id}/`];
+    }
+
+    useEffect(() => {
+        if (user) {
+            setIsFollowing(user.logged_in_user_is_following);
+            setFriendStatus(
+                user.logged_in_user_is_friends
+                    ? '✓ FRIEND'
+                    : user.logged_in_user_sent_fr
+                      ? 'PENDING'
+                      : 'ADD FRIEND'
+            );
+        }
+    }, [user]);
+
+    const handleFollow = async () => {
+        await sendRequest(
+            `/social/followers/toggle-follow/${user.id}/`,
+            null,
+            'post'
+        );
+        setIsFollowing((prev) => !prev);
+    };
+
+    const handleFriendRequest = async () => {
+        if (friendStatus !== 'ADD FRIEND') return;
+
+        await sendRequest(`/social/friends/request/${user.id}/`, null, 'post');
+        setFriendStatus('PENDING');
+    };
 
     if (isLoading) return <p>Loading...</p>;
     if (error) return <p>Error loading profile.</p>;
@@ -43,12 +86,36 @@ export default function ProfileCard() {
                         <p className="location">
                             {user.location || 'No location set'}
                         </p>
-                        <button
-                            className="edit-button"
-                            onClick={() => setIsEditing(true)}
-                        >
-                            EDIT PROFILE
-                        </button>
+
+                        {id ? (
+                            <div className="button-row">
+                                <button
+                                    className={`btn-follow ${isFollowing ? 'active' : ''}`}
+                                    onClick={handleFollow}
+                                    disabled={isLoading}
+                                >
+                                    {isFollowing ? 'FOLLOWING' : 'FOLLOW'}
+                                </button>
+
+                                <button
+                                    className={`btn-friend ${friendStatus !== 'ADD FRIEND' ? 'active' : ''}`}
+                                    onClick={handleFriendRequest}
+                                    disabled={
+                                        friendStatus !== 'ADD FRIEND' ||
+                                        isLoading
+                                    }
+                                >
+                                    {friendStatus}
+                                </button>
+                            </div>
+                        ) : (
+                            <button
+                                className="edit-button"
+                                onClick={() => setIsEditing(true)}
+                            >
+                                EDIT PROFILE
+                            </button>
+                        )}
                     </div>
 
                     <div className="right-panel">

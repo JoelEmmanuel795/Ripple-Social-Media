@@ -11,6 +11,7 @@ import useFetch from '../../../utils/useFetch';
 import PostView from '../PostView/PostView';
 
 const Post = ({ postData }) => {
+    const navigate = useNavigate();
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [publishedAt, setPublishedAt] = useState('2023-10-01T12:00:00Z');
@@ -85,9 +86,23 @@ const Post = ({ postData }) => {
     }
 
     return (
-        <>
-            <div className="post-item-container">
-                <header className="post-header">
+        <div className="post-item-container">
+            <header className="post-header">
+                <img
+                    className="user-avatar"
+                    src={avatar ? avatar : userAvatar}
+                    onClick={() => navigate(`/profile/${postData.user.id}`)}
+                />
+                <div className="name-and-published">
+                    {firstName} {lastName}
+                    <br />
+                    <p>
+                        {formatDistanceToNow(new Date(publishedAt), {
+                            addSuffix: true,
+                        })}
+                    </p>
+                </div>
+                {
                     <img
                         className="user-avatar"
                         src={avatar ? avatar : userAvatar}
