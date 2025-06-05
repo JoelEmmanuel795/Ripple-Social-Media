@@ -108,7 +108,9 @@ const PostEdit = ({ isShown, showModalFunc, postData, postID }) => {
 
         sendRequest(`/social/posts/${postID}/`, formData, 'patch');
         resetAllData();
-        handlePostRender();
+        setTimeout(() => {
+            window.location.reload();
+        }, 500);
     }
 
     function handlePostText(e) {
