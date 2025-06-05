@@ -87,6 +87,9 @@ const PostView = ({
         );
         setShowDeleteModal(false);
         setShowPostView(false);
+        setTimeout(() => {
+            window.location.reload();
+        }, 250);
     };
 
     /* ────────────────────────────────── render ────────────────────────────────── */

@@ -65,6 +65,9 @@ const PostCreatorInput = ({ isShown, showModalFunc, userAvatar }) => {
 
         sendRequest('/social/posts/', formData, 'post');
         resetAllData();
+        setTimeout(() => {
+            window.location.reload();
+        }, 250);
     }
 
     function handlePostText(e) {
