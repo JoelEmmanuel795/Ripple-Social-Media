@@ -1,25 +1,29 @@
 import { Link } from "react-router"
 import emailSVG from '../assets/svgs/mail.svg';
-import useFetch from "../utils/useFetch";
 import { useState } from "react";
 import checkmark from '../assets/svgs/checkmark.svg';
 import { useNavigate } from "react-router";
+import axios from "axios";
 
 export default function ForgotPassword ({changeStage}) {
 
     const [stage, setstage] = useState(false)
     const [email, setEmail] = useState('')
 
-    const {sendRequest, error} = useFetch()
+    
     const navigate = useNavigate()
 
-    const handleOnSubmit = (event) => {
+    const handleOnSubmit = async (event) => {
         event.preventDefault()
         const emailSend = event.target[0].value
         setEmail(emailSend)
-        sendRequest('/auth/password-reset/', {email: emailSend}, 'post')
-        setstage(true)
-        
+        try{
+            const response = await axios.post('https://motion.propulsion-home.ch/backend/api/auth/password-reset/', {email: emailSend})
+            setstage(true)
+        }
+        catch (error) {
+            alert(Object.values(error.response.data).flat().join('\n'), '\n Please try again!')
+        }  
     }
 
     return <>
@@ -63,7 +67,7 @@ export default function ForgotPassword ({changeStage}) {
                             />
                             <p>Wev'e sent a reset code to yout email<br/>{email}</p>
                             <button className="button-login" 
-                                    onClick={() => navigate('/auth/verification')}>
+                                    onClick={() => navigate('verification')}>
                                 CONTINUE
                             </button>
                         </div>   

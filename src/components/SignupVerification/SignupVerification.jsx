@@ -1,8 +1,9 @@
 
-import useFetch from '../../utils/useFetch'
+
 import { useNavigate } from 'react-router'
 import '../../sass/pages/login.scss'
 import { useState } from 'react';
+import axios from 'axios';
 
 
 
@@ -10,16 +11,21 @@ export default function SignupVerification () {
 
     const [formData, setFormData] = useState({});
 
-    const {sendRequest} = useFetch()
     const navigate = useNavigate()
 
     const addValues = (id, value) => {
         setFormData({...formData, [id]: value})        
     }
     
-    const sendPost = () => {
-        sendRequest('/auth/registration/validation/', formData, 'patch')
+    const sendPost = async() => {
+        try{
+            const response = await axios.patch('https://motion.propulsion-home.ch/backend/api/auth/registration/validation/', formData);
             navigate('/auth/login')
+        }
+        catch(error) {
+            alert(Object.values(error.response.data).flat().join('\n'), '\n Please try again!')
+        }
+            
     }
     
 

@@ -1,22 +1,33 @@
 import { Link } from 'react-router';
 import emailSVG from '../../assets/svgs/mail.svg';
-import useFetch from '../../utils/useFetch';
-import { useEffect } from 'react';
+import axios from 'axios';
+import { useState } from 'react';
 
-const SignupEmailForm = ({ setFormData, goNext }) => {
-    
+import SignupConfirmation from '../../components/SignupConfirmation/SignupConfirmation'
 
-    const handleOnSubmit = (event) => {
+const SignupEmailForm = () => {
+
+    const [step, setStep] = useState(1);
+    const nextStep = () => setStep((prev) => prev + 1)
+
+    const handleOnSubmit = async (event) => {
         event.preventDefault();
-        setFormData(event.target[0].value);
-        goNext();
+        try {
+            const email = event.target[0].value
+            const response = await axios.post('https://motion.propulsion-home.ch/backend/api/auth/registration/', {email: email})
+            nextStep();
+        }
+        catch(error) {
+            alert(Object.values(error.response.data).flat().join('\n'), '\n Please try again!')
+        }
+        
     };
 
     
 
     return (
         <>
-            <div className="container-right">
+            {step === 1 && <div className="container-right">
                 <div className="header">
                     Already have an account?
                     <Link to={'/auth/login'} className="button-signup">SIGN IN</Link>
@@ -40,7 +51,8 @@ const SignupEmailForm = ({ setFormData, goNext }) => {
                         </form>
                     </div>
                 </div>
-            </div>
+            </div>}
+            {step === 2 && <SignupConfirmation/>}
         </>
     );
 };

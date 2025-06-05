@@ -77,7 +77,7 @@ const useFetch = () => {
         } catch (error) {
             console.log(error);
             setError(error);
-            alert(Object.values(error.response.data).flat().join('\n'), '\n Please try again!')
+            
         } finally {
             setIsLoading(false);
         }
