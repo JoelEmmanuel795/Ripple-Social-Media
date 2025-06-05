@@ -20,6 +20,7 @@ function App() {
                 <Route path="posts/:filter" element={<PostContainer />} />
                 <Route path="friends" element={<Friends />} />
                 <Route path="profile" element={<Profile />} />
+                <Route path="profile/:id" element={<Profile />} />
             </Route>
         </Routes>
     );
