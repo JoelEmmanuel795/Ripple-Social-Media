@@ -9,12 +9,14 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { logout_user } from '../store/slices/userSlice';
 import NotificationModal from './NotificationModal/NotificationModal';
+import './navber.scss';
 
 export default function NavBar() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [notifications, setNotifications] = useState(false);
     const [menuO, setMenu] = useState(false);
+    const [badgeCount, setBadgeCount] = useState(0);
 
     const handleLogout = () => {
         dispatch(logout_user());
@@ -23,9 +25,11 @@ export default function NavBar() {
 
     return (
         <div className="nav-bar">
-            <h5>
-                <img src={logo} alt="logo" /> Motion
-            </h5>
+            <NavLink to={'/'}>
+                <text>
+                    <img src={logo} alt="logo" /> Motion
+                </text>
+            </NavLink>
             <nav>
                 <NavLink to={'/posts/all'}>
                     <img src={posts_logo} alt="postsLogo" /> Posts
@@ -36,16 +40,18 @@ export default function NavBar() {
             </nav>
             <div className="leftGroup">
                 <button
-                    className="func-buttons"
-                    onClick={() =>
-                        setNotifications(notifications ? false : true)
-                    }
+                    className="func-buttons notification-wrapper"
+                    onClick={() => setNotifications(!notifications)}
                 >
                     <img src={notificationBell} alt="bell" />
+                    {badgeCount > 0 && (
+                        <span className="notification-badge">{badgeCount}</span>
+                    )}
                 </button>
                 {notifications && (
                     <NotificationModal
                         onClose={() => setNotifications(false)}
+                        setBadgeCount={setBadgeCount}
                     />
                 )}
 
@@ -68,9 +74,11 @@ export default function NavBar() {
                 </button>
                 {menuO && (
                     <div className="dropdown-menu">
-                        <button className="dropdown-item">
-                            <span>Profile</span>
-                        </button>
+                        <NavLink to={'/profile'}>
+                            <button className="dropdown-item">
+                                <span>Profile</span>
+                            </button>
+                        </NavLink>
                         <button
                             onClick={handleLogout}
                             className="dropdown-item"

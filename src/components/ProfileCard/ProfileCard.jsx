@@ -1,34 +1,31 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './ProfileCard.scss';
 import ProfileEditCard from './ProfileEditCard';
+import profilePic from '../../assets/images/users/default.png';
+
+import useFetch from '../../utils/useFetch';
 
 export default function ProfileCard() {
     const [isEditing, setIsEditing] = useState(false);
+    const { sendRequest, resData, isLoading, error } = useFetch();
 
-    const user = {
-        avatar: 'https://i.pravatar.cc/150?img=32',
-        firstName: 'Jennifer',
-        lastName: 'Smith',
-        email: 'jennifersmith@gmail.com',
-        username: 'jennifer.smith',
-        location: 'Zürich, Switzerland',
-        phone: '123-456-7890',
-        about: 'Lorem ipsum dolor sit amet, vim ut quas volumus probatus, has tantas laudem iracundia et, ad per utamur ceteros apeirian',
-        things_user_likes: [
-            'Cooking',
-            'Travel',
-            'Reading',
-            'Swimming',
-            'Running',
-        ],
-        stats: {
-            posts: 34,
-            likes: 256,
-            friends: 98,
-            followers: 129,
-            following: 154,
-        },
-    };
+    useEffect(() => {
+        sendRequest('/users/me/');
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    useEffect(() => {
+        if (!isEditing) {
+            sendRequest('/users/me/');
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [isEditing]);
+
+    const user = resData['/users/me/'];
+
+    if (isLoading) return <p>Loading...</p>;
+    if (error) return <p>Error loading profile.</p>;
+    if (!user) return null;
 
     return (
         <div className="profile-card">
@@ -37,18 +34,20 @@ export default function ProfileCard() {
                     <div className="left-panel">
                         <img
                             className="avatar"
-                            src={user.avatar}
+                            src={user.avatar || profilePic}
                             alt="Avatar"
                         />
                         <h2 className="name">
-                            {user.firstName} {user.lastName}
+                            {user.first_name} {user.last_name}
                         </h2>
-                        <p className="location">{user.location}</p>
+                        <p className="location">
+                            {user.location || 'No location set'}
+                        </p>
                         <button
                             className="edit-button"
-                            onClick={() => setIsEditing(!isEditing)}
+                            onClick={() => setIsEditing(true)}
                         >
-                            {isEditing ? 'CANCEL' : 'EDIT PROFILE'}
+                            EDIT PROFILE
                         </button>
                     </div>
 
@@ -57,7 +56,7 @@ export default function ProfileCard() {
                             <div className="left-content">
                                 <div className="about">
                                     <h4>About</h4>
-                                    <p>{user.about}</p>
+                                    <p>{user.about_me || 'No bio yet'}</p>
                                 </div>
                                 <div className="info">
                                     <div>
@@ -66,7 +65,7 @@ export default function ProfileCard() {
                                     </div>
                                     <div>
                                         <h4>Phone</h4>
-                                        <p>{user.phone}</p>
+                                        <p>{user.phone_number || 'N/A'}</p>
                                     </div>
                                 </div>
                             </div>
@@ -74,32 +73,55 @@ export default function ProfileCard() {
                                 <div className="likes">
                                     <h4>Things I like</h4>
                                     <div className="tags">
-                                        {user.things_user_likes.map(
-                                            (tag, index) => (
-                                                <span
-                                                    key={index}
-                                                    className="tag"
-                                                >
-                                                    {tag}
-                                                </span>
+                                        {user.things_user_likes?.length > 0 ? (
+                                            user.things_user_likes.map(
+                                                (tag, i) => (
+                                                    <span
+                                                        key={i}
+                                                        className="tag"
+                                                    >
+                                                        {tag}
+                                                    </span>
+                                                )
                                             )
+                                        ) : (
+                                            <p>No interests added</p>
                                         )}
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div className="stats">
-                            {Object.entries(user.stats).map(
-                                ([label, value]) => (
-                                    <div className="stat" key={label}>
-                                        <span className="value">{value}</span>
-                                        <span className="label">
-                                            {label.charAt(0).toUpperCase() +
-                                                label.slice(1)}
-                                        </span>
-                                    </div>
-                                )
-                            )}
+                            <div className="stat">
+                                <span className="value">
+                                    {user.amount_of_posts}
+                                </span>
+                                <span className="label">Posts</span>
+                            </div>
+                            <div className="stat">
+                                <span className="value">
+                                    {user.amount_of_likes}
+                                </span>
+                                <span className="label">Likes</span>
+                            </div>
+                            <div className="stat">
+                                <span className="value">
+                                    {user.amount_of_friends}
+                                </span>
+                                <span className="label">Friends</span>
+                            </div>
+                            <div className="stat">
+                                <span className="value">
+                                    {user.amount_of_followers}
+                                </span>
+                                <span className="label">Followers</span>
+                            </div>
+                            <div className="stat">
+                                <span className="value">
+                                    {user.amount_following}
+                                </span>
+                                <span className="label">Following</span>
+                            </div>
                         </div>
                     </div>
                 </>
