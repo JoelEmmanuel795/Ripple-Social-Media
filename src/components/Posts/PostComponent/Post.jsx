@@ -8,8 +8,10 @@ import kebabMenu from '../../../assets/svgs/menu.svg';
 import { formatDistanceToNow } from 'date-fns';
 import ImageGallery from '../ImageGallery/ImageGallery';
 import useFetch from '../../../utils/useFetch';
+import { useNavigate } from 'react-router';
 
 const Post = ({ postData }) => {
+    const navigate = useNavigate();
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [publishedAt, setPublishedAt] = useState('2023-10-01T12:00:00Z');
@@ -48,7 +50,8 @@ const Post = ({ postData }) => {
                 <img
                     className="user-avatar"
                     src={avatar ? avatar : userAvatar}
-                ></img>
+                    onClick={() => navigate(`/profile/${postData.user.id}`)}
+                />
                 <div className="name-and-published">
                     {firstName} {lastName}
                     <br />
