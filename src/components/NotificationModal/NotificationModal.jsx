@@ -3,6 +3,7 @@ import { Check, X, Clock } from 'lucide-react';
 import { useEffect, useState, useRef } from 'react';
 import useFetch from '../../utils/useFetch';
 import { useSelector } from 'react-redux';
+import defaultAvatar from '../../assets/images/users/default.png'
 
 export default function NotificationModal({ onClose, setBadgeCount }) {
     const modalRef = useRef(null);
@@ -70,7 +71,7 @@ export default function NotificationModal({ onClose, setBadgeCount }) {
                         <div key={req.id} className="notification-row">
                             <img
                                 className="avatar"
-                                src={user.avatar}
+                                src={user.avatar? user.avatar: defaultAvatar}
                                 alt={user.first_name?.charAt(0)}
                             />
                             <div className="info">
@@ -102,7 +103,7 @@ export default function NotificationModal({ onClose, setBadgeCount }) {
                         <div key={req.id} className="notification-row sent">
                             <img
                                 className="avatar"
-                                src={user.avatar}
+                                src={user.avatar? user.avatar: defaultAvatar}
                                 alt={user.first_name?.charAt(0)}
                             />
                             <div className="info">

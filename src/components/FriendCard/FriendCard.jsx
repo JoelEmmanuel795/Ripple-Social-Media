@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import useFetch from '../../utils/useFetch';
 import './FriendCard.scss';
+import defaultAvatar from '../../assets/images/users/default.png'
 
 export default function FriendCard({ friend }) {
     const { sendRequest, isLoading } = useFetch();
@@ -40,7 +41,7 @@ export default function FriendCard({ friend }) {
         <div className="friend-card">
             <img
                 className="avatar"
-                src={friend.avatar || '/default-avatar.png'}
+                src={friend.avatar? friend.avatar: defaultAvatar}
                 alt={`${friend.first_name} ${friend.last_name}`}
             />
 
