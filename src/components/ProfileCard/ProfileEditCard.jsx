@@ -101,6 +101,9 @@ export default function ProfileEditCard({ user, onCancel }) {
             data.append('avatar', '');
         }
 
+        const makeshiftSolutionData = formData;
+        delete makeshiftSolutionData.avatar;
+
         // Can't figure out how to do tags (interests), API docs insufficient
 
         try {
@@ -111,6 +114,15 @@ export default function ProfileEditCard({ user, onCancel }) {
                     headers: {
                         Authorization: `Bearer ${token}`,
                         'Content-Type': 'multipart/form-data',
+                    },
+                }
+            );
+            await axios.patch(
+                'https://motion.propulsion-home.ch/backend/api/users/me/',
+                makeshiftSolutionData,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
                     },
                 }
             );
