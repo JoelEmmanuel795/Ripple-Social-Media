@@ -9,6 +9,7 @@ import Friends from './pages/Friends';
 import ForgotPassword from './pages/ForgotPassword';
 import Verification from './pages/Verification';
 
+import Profile from './pages/Profile';
 
 function App() {
     return (
@@ -23,6 +24,7 @@ function App() {
             <Route element={<ProtectedLayout />}>
                 <Route path="posts/:filter" element={<PostContainer />} />
                 <Route path="friends" element={<Friends />} />
+                <Route path="profile" element={<Profile />} />
             </Route>
         </Routes>
     );

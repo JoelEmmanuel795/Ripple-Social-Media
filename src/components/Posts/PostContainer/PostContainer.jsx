@@ -1,45 +1,44 @@
 import './PostContainer.scss';
 import PostNavbar from '../PostsNavbar/PostNavbar';
-import { useParams } from 'react-router';
 import PostCreator from '../PostCreator/PostCreator';
 import Post from '../PostComponent/Post';
-import useFetch from '../../../utils/useFetch';
-import { useEffect } from 'react';
+import Masonry from 'react-masonry-css';
+import { useParams } from 'react-router';
+import { usePaginatedPosts } from '../../../utils/usePaginatedPosts';
 
 const PostContainer = () => {
-    //const access = useSelector((state) => state.user.accessToken);
-    const { resData, sendRequest, isLoading } = useFetch();
     const { filter } = useParams();
+    const LIMIT = 10;
+    const { posts, isLoading, loadMore } = usePaginatedPosts(filter, LIMIT);
 
-    useEffect(() => {
-        switch (filter) {
-            case 'liked':
-                sendRequest('/social/posts/likes/', 'get');
-                break;
-            case 'friends':
-                sendRequest('/social/posts/friends/', 'get');
-                break;
-            case 'following':
-                sendRequest('/social/posts/likes/', 'get');
-                break;
-            default:
-                sendRequest('/social/posts/', 'get');
-        }
-    }, [filter]);
+    const breakpointColumnsObj = {
+        default: 2,
+        768: 1,
+    };
 
-    useEffect(() => {
-        console.log(resData);
-    }, [resData]);
     return (
         <div className="post-master-container">
             <PostNavbar />
-            <div className="post-columns-container">
+            <Masonry
+                breakpointCols={breakpointColumnsObj}
+                className="post-columns-container"
+                columnClassName="post-column"
+            >
                 <PostCreator />
-                {isLoading && <>Loading...</>}
-                {resData['/social/posts/']?.results.map((post) => {
-                    return <Post key={post.id} postData={post} />;
-                })}
-            </div>
+                {isLoading && <p>Loading...</p>}
+                {posts.map((post) => (
+                    <Post key={post.id} postData={post} />
+                ))}
+            </Masonry>
+            {posts.length >= LIMIT && (
+                <button
+                    className="paggination-button"
+                    onClick={loadMore}
+                    disabled={isLoading}
+                >
+                    {isLoading ? 'Loading...' : 'Load more'}
+                </button>
+            )}
         </div>
     );
 };

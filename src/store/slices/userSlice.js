@@ -4,16 +4,19 @@ export const userSlice = createSlice({
     name: 'user',
     initialState: {
         accessToken: undefined,
-        username: undefined,
+        user: {},
     },
     reducers: {
         login_user: (state, action) => {
-            state.accessToken = action.payload;
-            localStorage.setItem('access', action.payload);
+            state.accessToken = action.payload.access;
+            state.user = action.payload.user;
+            localStorage.setItem('access', action.payload.access);
+            localStorage.setItem('user', JSON.stringify(action.payload.user));
         },
         logout_user: (state) => {
             state.accessToken = null;
             localStorage.removeItem('access');
+            localStorage.removeItem('user');
         },
     },
 });

@@ -1,5 +1,5 @@
 import './PostCreator.scss';
-import jennifer_avatar from '../../../assets/images//users/jennifer.png';
+import defaultAvatar from '../../../assets/images//users/default.png';
 import { useState } from 'react';
 import send_button from '../../../assets/svgs/send_button.svg';
 import PostCreatorInput from '../PostCreatorInput/PostCreatorInput.jsx';
@@ -18,7 +18,7 @@ const PostCreator = () => {
         <>
             <div className="post-creator-container" onClick={handleCreatePost}>
                 <div className="avatar-and-input">
-                    <img className="user-avatar" src={jennifer_avatar}></img>
+                    <img className="user-avatar" src={defaultAvatar}></img>
                     <p>{inputString}</p>
                 </div>
                 <div className="create-post-bgr">
