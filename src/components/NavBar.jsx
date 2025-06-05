@@ -5,11 +5,14 @@ import iconFriends from '../assets/svgs/icon-friends.svg';
 import notificationBell from '../assets/svgs/notification_bell.svg';
 import profilePic from '../assets/images/users/default.png';
 import menu from '../assets/svgs/menu.svg';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { logout_user } from '../store/slices/userSlice';
 import NotificationModal from './NotificationModal/NotificationModal';
 import './navber.scss';
+import useFetch from '../utils/useFetch';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 export default function NavBar() {
     const navigate = useNavigate();
@@ -17,11 +20,43 @@ export default function NavBar() {
     const [notifications, setNotifications] = useState(false);
     const [menuO, setMenu] = useState(false);
     const [badgeCount, setBadgeCount] = useState(0);
+    const [userAvatar, setUserAvatar] = useState('');
+    const access = useSelector((state) => state.user.accessToken);
+    const userMeEndpoint = '/users/me/';
+    const menuRef = useRef(null);
+
+    const { sendRequest, resData } = useFetch();
+
+    useEffect(() => {
+        if (access) {
+            sendRequest(userMeEndpoint);
+        }
+    }, [access]);
+
+    useEffect(() => {
+        if (resData && resData[userMeEndpoint]) {
+            setUserAvatar(resData[userMeEndpoint].avatar);
+            console.log(resData[userMeEndpoint]);
+        }
+    }, [resData]);
 
     const handleLogout = () => {
         dispatch(logout_user());
         navigate('/auth/login');
     };
+
+    useEffect(() => {
+        if (!menuO) return;
+        function handleClickOutside(event) {
+            if (menuRef.current && !menuRef.current.contains(event.target)) {
+                setMenu(false);
+            }
+        }
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [menuO]);
 
     return (
         <div className="nav-bar">
@@ -61,7 +96,7 @@ export default function NavBar() {
                 >
                     <img
                         className="navbar-avatar"
-                        src={profilePic}
+                        src={userAvatar || profilePic}
                         alt="profile_pic"
                     />
                 </button>
@@ -73,7 +108,7 @@ export default function NavBar() {
                     <img src={menu} alt="mnue-icon" />
                 </button>
                 {menuO && (
-                    <div className="dropdown-menu">
+                    <div className="dropdown-menu" ref={menuRef}>
                         <NavLink to={'/profile'}>
                             <button className="dropdown-item">
                                 <span>Profile</span>

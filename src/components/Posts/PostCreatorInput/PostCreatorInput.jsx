@@ -7,7 +7,7 @@ import useFetch from '../../../utils/useFetch';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
-const PostCreatorInput = ({ isShown, showModalFunc }) => {
+const PostCreatorInput = ({ isShown, showModalFunc, userAvatar }) => {
     const inputString = `Today I want to write a post about...`;
 
     const [userInfo, setUserInfo] = useState({});
@@ -18,7 +18,7 @@ const PostCreatorInput = ({ isShown, showModalFunc }) => {
     const access = useSelector((state) => state.user.accessToken);
     const getUserMe = '/users/me/';
 
-    const { sendRequest, resData, isLoading, error } = useFetch();
+    const { sendRequest, resData } = useFetch();
 
     useEffect(() => {
         if (access) {
@@ -113,7 +113,7 @@ const PostCreatorInput = ({ isShown, showModalFunc }) => {
                 <div className="avatar-and-input">
                     <img
                         className="user-avatar"
-                        src={jennifer_avatar}
+                        src={userAvatar}
                         alt="User avatar"
                     />
                     <textarea

@@ -1,10 +1,11 @@
 import './NotificationModal.scss';
 import { Check, X, Clock } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import useFetch from '../../utils/useFetch';
 import { useSelector } from 'react-redux';
 
 export default function NotificationModal({ onClose, setBadgeCount }) {
+    const modalRef = useRef(null);
     const { sendRequest, resData, isLoading, error } = useFetch();
     const [receivedRequests, setReceivedRequests] = useState([]);
     const [sentRequests, setSentRequests] = useState([]);
@@ -45,8 +46,20 @@ export default function NotificationModal({ onClose, setBadgeCount }) {
     const handleAccept = (id) => handleUpdateStatus(id, 'A');
     const handleReject = (id) => handleUpdateStatus(id, 'R');
 
+    useEffect(() => {
+        function handleClickOutside(event) {
+            if (modalRef.current && !modalRef.current.contains(event.target)) {
+                onClose();
+            }
+        }
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [onClose]);
+
     return (
-        <div className="notification-modal" onBlur={onClose} tabIndex="0">
+        <div className="notification-modal" ref={modalRef} tabIndex="0">
             <div className="section">
                 <h4>Received requests</h4>
                 {isLoading && <p className="loading">Loading...</p>}
