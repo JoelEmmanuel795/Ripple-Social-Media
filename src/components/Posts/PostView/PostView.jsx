@@ -89,7 +89,7 @@ const PostView = ({
         setShowPostView(false);
         setTimeout(() => {
             window.location.reload();
-        }, 250);
+        }, 1000);
     };
 
     /* ────────────────────────────────── render ────────────────────────────────── */

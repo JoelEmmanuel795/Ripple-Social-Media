@@ -12,9 +12,9 @@ const Sidebar = () => {
         <div className="container-left">
             <div className="left-top">
                 <img src={logoWhite} alt="motion-logo" />
-                <h1>Motion</h1>
+                <h1>Ripple</h1>
                 <p>
-                    Connect with friends and the world around you with Motion.
+                    Connect with friends and the world around you with Ripple.
                 </p>
                 <div className="button-container">
                     <a href="#" className="button-appstore">
@@ -37,7 +37,7 @@ const Sidebar = () => {
                         <img src={instagramIcon} alt="" />
                     </div>
                 </div>
-                <p>© Motion 2025. All rights reserved.</p>
+                <p>© Ripple 2025. All rights reserved.</p>
             </div>
         </div>
     );

@@ -67,7 +67,7 @@ const PostCreatorInput = ({ isShown, showModalFunc, userAvatar }) => {
         resetAllData();
         setTimeout(() => {
             window.location.reload();
-        }, 250);
+        }, 1000);
     }
 
     function handlePostText(e) {

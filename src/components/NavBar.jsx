@@ -63,7 +63,7 @@ export default function NavBar() {
             <div className="outet-navebar">
                 <NavLink to={'/'} className="motion-logo">
                     <text>
-                        <img src={logo} alt="logo" /> Motion
+                        <img src={logo} alt="logo" /> Ripple
                     </text>
                 </NavLink>
                 <div className="nav-bar">

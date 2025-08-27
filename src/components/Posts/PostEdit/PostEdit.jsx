@@ -110,7 +110,7 @@ const PostEdit = ({ isShown, showModalFunc, postData, postID }) => {
         resetAllData();
         setTimeout(() => {
             window.location.reload();
-        }, 500);
+        }, 1000);
     }
 
     function handlePostText(e) {
