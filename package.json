@@ -3,6 +3,7 @@
     "private": true,
     "version": "0.0.0",
     "type": "module",
+    "homepage": "https://JoelEmmanuel795.github.io/Ripple-Social-Media/",
     "scripts": {
         "dev": "vite",
         "build": "vite build",
