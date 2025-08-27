@@ -17,30 +17,30 @@ Ripple demonstrates modern web development practices, implementing a feature-ric
 ### Authentication & User Management
 
 - Secure user registration and login system
-  <p align="center">
-  <img src="assets/2.png" height="300">
-  </p>
+      <p align="center">
+      <img src="assets/2.png" height="300">
+      </p>
 - Profile customization and management
-  <p align="center">
-  <img src="assets/11.png" height="300">
-  </p>
+      <p align="center">
+      <img src="assets/11.png" height="300">
+      </p>
 - Privacy-focused user settings
 
 ### Social Feed Management
 
 - Intuitive homepage with infinite scrolling feature
-  <p align="center">
-  <img src="assets/1.png" height="300">
-  </p>
+      <p align="center">
+      <img src="assets/1.png" height="300">
+      </p>
 - Dynamic post creation with multi-image support
-  <p align="center">
-  <img src="assets/7.png" height="300">
-  </p>
+      <p align="center">
+      <img src="assets/7.png" height="300">
+      </p>
 - Real-time post updates and editing capabilities
 - Post deletion with user confirmation
-  <p align="center">
-  <img src="assets/10.png" height="300">
-  </p>
+      <p align="center">
+      <img src="assets/10.png" height="300">
+      </p>
 
 ### Content Filtering & Organization
 
@@ -48,22 +48,22 @@ Ripple demonstrates modern web development practices, implementing a feature-ric
     - Liked posts filter
     - Friends' posts view
     - Following feed filter
-        <p align="center">
-        <img src="assets/6.png" height="300">
-        </p>
+      <p align="center">
+      <img src="assets/6.png" height="300">
+      </p>
 
 ### Social Interactions
 
 - Real-time notification center
 - Interactive friend request system
-  <p align="center">
-  <img src="assets/9.png" height="300">
-  </p>
+      <p align="center">
+      <img src="assets/9.png" height="300">
+      </p>
 - Intuitive post liking system
 - Seamless post sharing functionality
-  <p align="center">
-  <img src="assets/8.png" height="300">
-  </p>
+      <p align="center">
+      <img src="assets/8.png" height="300">
+      </p>
 
 ### User Connections
 
@@ -71,21 +71,21 @@ Ripple demonstrates modern web development practices, implementing a feature-ric
 - Follow/Unfollow functionality
 - Friend request management
 - Network building tools
-  <p align="center">
-  <img src="assets/3.png" height="300">
-  </p>
+      <p align="center">
+      <img src="assets/3.png" height="300">
+      </p>
 
 ### Profile Customization
 
 - Comprehensive profile editing
-  <p align="center">
-  <img src="assets/5.png" height="300">
-  </p>
+      <p align="center">
+      <img src="assets/5.png" height="300">
+      </p>
 - Privacy settings management
 - Activity tracking and history
-  <p align="center">
-  <img src="assets/4.png" height="300">
-  </p>
+      <p align="center">
+      <img src="assets/4.png" height="300">
+      </p>
 
 ## Tech Stack
 
@@ -160,8 +160,4 @@ Developed as part of the Constructor Academy Full-Stack Development Bootcamp by:
 
 ## Connect & Contribute
 
-Feel free to explore the codebase, submit issues, or reach out for collaboration. The backend repository is available [here](https://randomlink.com).
-
-## License
-
-[Add your chosen license]
+Feel free to explore the codebase, submit issues, or reach out for collaboration.
