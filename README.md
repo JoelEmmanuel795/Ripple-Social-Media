@@ -1,12 +1,82 @@
 # Ripple Social Media Platform
 
 Ripple is a modern social media platform developed as part of the Constructor Academy Full-Stack Development Bootcamp. This repository contains the frontend implementation, created collaboratively by a team of three developers over an intensive one-week sprint.
+[View Backend/Fullstack Repository](https://github.com/JoelEmmanuel795/Ripple-Social-Media-Fullstack)
 
-[View Backend Repository](https://randomlink.com)
+## Live Demo
+
+You can access the deployed version of Ripple here:  
+[https://joelemmanuel795.github.io/Ripple-Social-Media/](https://joelemmanuel795.github.io/Ripple-Social-Media/)
 
 ## Project Overview
 
 Ripple demonstrates modern web development practices, implementing a feature-rich social media platform with real-time interactions, responsive design, and a polished user interface. Built with React and leveraging contemporary frontend technologies, this project showcases our ability to create production-ready web applications with complex state management and user interactions.
+
+## Features
+
+### Authentication & User Management
+
+- Secure user registration and login system
+- Profile customization and management
+- Privacy-focused user settings
+      <p align="center">
+      <img src="assets/2.png" height="300">
+      <img src="assets/11.png" height="300">
+      </p>
+
+### Social Feed Management
+
+- Intuitive homepage with infinite scrolling feature
+- Dynamic post creation with multi-image support
+- Real-time post updates and editing capabilities
+- Post deletion with user confirmation
+      <p align="center">
+      <img src="assets/1.png" height="300">
+      <img src="assets/7.png" height="300">
+      <img src="assets/10.png" height="300">
+      </p>
+
+### Content Filtering & Organization
+
+- Advanced post filtering system:
+    - Liked posts filter
+    - Friends' posts view
+    - Following feed filter
+      <p align="center">
+      <img src="assets/6.png" height="300">
+      </p>
+
+### Social Interactions
+
+- Real-time notification center
+- Interactive friend request system
+- Intuitive post liking system
+- Seamless post sharing functionality
+      <p align="center">
+      <img src="assets/9.png" height="300">
+      <img src="assets/8.png" height="300">
+      </p>
+
+### User Connections
+
+- Friend discovery and suggestion system
+- Follow/Unfollow functionality
+- Friend request management
+- Network building tools
+      <p align="center">
+      <img src="assets/3.png" height="300">
+      </p>
+
+### Profile Customization
+
+- Comprehensive profile editing
+- Privacy settings management
+- Activity tracking and history
+- [Add your image here]
+      <p align="center">
+      <img src="assets/4.png" height="300">
+      <img src="assets/5.png" height="300">
+      </p>
 
 ## Tech Stack
 
@@ -29,57 +99,6 @@ Ripple demonstrates modern web development practices, implementing a feature-ric
 - **ESLint** - Code quality and style enforcement
 - **Prettier** - Code formatting
 - **SWC** - Fast JavaScript/TypeScript compiler
-
-## Features
-
-### Authentication & User Management
-
-- Secure user registration and login system
-- Profile customization and management
-- Privacy-focused user settings
-  <p align="center">
-    <img src="assets/2.png" height="300">
-    <img src="assets/11.png" height="300">
-  </p>
-
-### Social Feed Management
-
-- Dynamic post creation with multi-image support
-- Real-time post updates and editing capabilities
-- Post deletion with user confirmation
-- [Add your image here]
-
-### Content Filtering & Organization
-
-- Advanced post filtering system:
-    - Liked posts filter
-    - Friends' posts view
-    - Following feed filter
-- Chronological and engagement-based sorting
-- [Add your image here]
-
-### Social Interactions
-
-- Intuitive post liking system
-- Seamless post sharing functionality
-- Interactive friend request system
-- Real-time notification center
-- [Add your image here]
-
-### User Connections
-
-- Friend discovery and suggestion system
-- Follow/Unfollow functionality
-- Friend request management
-- Network building tools
-- [Add your image here]
-
-### Profile Customization
-
-- Comprehensive profile editing
-- Privacy settings management
-- Activity tracking and history
-- [Add your image here]
 
 ## Installation & Setup
 
@@ -126,9 +145,9 @@ npm run deploy
 
 Developed as part of the Constructor Academy Full-Stack Development Bootcamp by:
 
-- [Your Name]
-- [Teammate 1]
-- [Teammate 2]
+- Joel Gamonez
+- Philippe Giarvinni
+- Andrea Lombardo
 
 ## Connect & Contribute
 
